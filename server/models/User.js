@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const bcrypt = require("bcrypt");
 
+// do we need first and last name or is gamertag enough??
 const userSchema = new Schema({
     firstName: {
         type: String,
@@ -10,6 +11,11 @@ const userSchema = new Schema({
         trim: true,
     },
     lastName: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    gamertag: {
         type: String,
         required: true,
         trim: true,
