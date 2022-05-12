@@ -1,5 +1,6 @@
 const { gql } = require("apollo-server-express");
 
+// add user's friends, user's achievments basic, user's single game achievemets, friends single game achievements
 const typeDefs = gql`
     type User {
         _id: ID

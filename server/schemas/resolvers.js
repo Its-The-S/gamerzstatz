@@ -4,6 +4,7 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
     Query: {
+        // /account
         user: async (parent, args, context) => {
             if (context.user) {
                 const user = await User.findById(context.user._id);
@@ -13,6 +14,17 @@ const resolvers = {
 
             throw new AuthenticationError("Not logged in");
         },
+        // /friends
+        // user's friends
+
+        // /achievements
+        // user's games/basic achievements
+
+        // /achievements/title/:titleID
+        // user's single game deeper achievements
+
+        // /achievements/player/:xuid/title/:titleID
+        // friend's single game deeper achievements
     },
     Mutation: {
         addUser: async (parent, args) => {
