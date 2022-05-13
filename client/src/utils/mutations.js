@@ -30,13 +30,14 @@ export const ADD_ORDER = gql`
 `;
 
 export const ADD_USER = gql`
-    mutation Mutation($firstName: String!, $lastName: String!, $email: String!, $password: String!, $gamertag: String!) {
-        addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, gamertag: $gamertag) {
+    mutation Mutation($firstName: String!, $lastName: String!, $gamertag: String!, $email: String!, $password: String!) {
+        addUser(firstName: $firstName, lastName: $lastName, gamertag: $gamertag, email: $email, password: $password) {
+            token
             user {
-                _id
-                gamertag
-                lastName
                 firstName
+                lastName
+                gamertag
+                email
             }
         }
     }
