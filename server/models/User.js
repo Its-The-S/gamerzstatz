@@ -30,8 +30,8 @@ const userSchema = new Schema({
         required: true,
         minlength: 5,
     },
-    games: [Game.schema],
-    friends: [Friend.schema],
+    // games: [Game.schema],
+    // friends: [Friend.schema],
 });
 
 // set up pre-save middleware to create password
