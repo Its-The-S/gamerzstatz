@@ -7,9 +7,17 @@ const axios = require("axios");
 // });
 
 const Home = () => {
-  const account = axios.get("/api/account").then((res) => console.log(res));
+    const fetchAccount = async () => {
+        const account = await axios.get("/api/account");
+        console.log("Account info:", account);
+    };
 
-  return <div className="container">HELLO WORLD</div>;
+    return (
+        <div className="container" onLoad={fetchAccount}>
+            HELLO WORLD
+        </div>
+    );
+ main
 };
 
 export default Home;
