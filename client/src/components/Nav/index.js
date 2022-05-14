@@ -5,10 +5,10 @@ import { useUser } from "../../utils/UserContext";
 
 // displays nav bar
 function Nav() {
-    const { currentUser, updateUser } = useUser();
-    React.useEffect(() => {
-        updateUser("tom");
-    }, []);
+  const { currentUser, updateUser } = useUser();
+  React.useEffect(() => {
+    updateUser();
+  }, []);
 
     function showNavigation() {
         // displayed if user is logged in
