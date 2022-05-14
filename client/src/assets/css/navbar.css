@@ -1,6 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
-.font-shadows {
-  font-family: 'Shadows Into Light', cursive;
+@import url(https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap);
+
+h1 {
+  font-family: 'Shadows Into Light';
+  box-sizing: border-box;
 }
 
 .top-nav {
@@ -8,8 +10,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: #011638;
-    background: linear-gradient(to right, #011638, #016FB9);
+    background-color: #333333;
+    background: linear-gradient(to left, #AAB1AE, #DB1A20 );
     color: #FFF;
     height: 50px;
     padding: 1em;
