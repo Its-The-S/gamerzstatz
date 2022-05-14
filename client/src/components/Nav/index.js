@@ -1,8 +1,14 @@
 import React from 'react';
 import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
+import { useUser } from '../../utils/UserContext'
 
 function Nav() {
+  const { currentUser, updateUser } = useUser();
+React.useEffect(()=> {
+  updateUser("tom");
+}, [])
+
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
