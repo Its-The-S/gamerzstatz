@@ -1,4 +1,5 @@
 import React from "react";
+import Card from "../components/Card";
 const axios = require("axios");
 // const xbl = axios.create({
 //   baseURL: "http://xbl.io/api/v2",
@@ -7,17 +8,18 @@ const axios = require("axios");
 // });
 
 const Home = () => {
-    const fetchAccount = async () => {
-        const account = await axios.get("/api/account");
-        console.log("Account info:", account);
-    };
+  const fetchAccount = async () => {
+    const account = await axios.get("/api/account");
+    console.log("Account info:", account);
+  };
 
-    return (
-        <div className="container" onLoad={fetchAccount}>
-            HELLO WORLD
-        </div>
-    );
- main
+  return (
+    <div className="container" onLoad={fetchAccount}>
+      <Card />
+      HELLO WORLD
+    </div>
+  );
+  main;
 };
 
 export default Home;
