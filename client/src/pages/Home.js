@@ -7,16 +7,16 @@ const axios = require("axios");
 // });
 
 const Home = () => {
-    const fetchAccount = async () => {
-        const account = await axios.get("/api/account");
-        console.log("Account info:", account);
-    };
+  const fetchAccount = async () => {
+    const account = await axios.get("/api/account");
+    console.log("Account info:", account);
+  };
 
-    return (
-        <div className="container" onLoad={fetchAccount}>
-            HELLO WORLD
-        </div>
-    );
+  return (
+    <div className="container" onLoad={fetchAccount}>
+      Welcome to Gamerz Statz! <br />
+    </div>
+  );
 };
 
 export default Home;

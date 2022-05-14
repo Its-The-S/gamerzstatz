@@ -7,7 +7,7 @@ import { useUser } from "../../utils/UserContext";
 function Nav() {
   const { currentUser, updateUser } = useUser();
   React.useEffect(() => {
-    updateUser("tom");
+    updateUser();
   }, []);
 
   function showNavigation() {
