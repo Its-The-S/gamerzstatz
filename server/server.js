@@ -2,6 +2,7 @@ const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
 const { authMiddleware } = require("./utils/auth");
+const axios = require("axios");
 
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
@@ -27,6 +28,28 @@ if (process.env.NODE_ENV === "production") {
 // app.get("*", (req, res) => {
 //     res.sendFile(path.join(__dirname, "../client/build/index.html"));
 // });
+
+app.get("/api/account", async (req, res) => {
+    const response = await axios({
+        method: "get",
+        url: "http://xbl.io/api/v2/account",
+        responseType: "json",
+        headers: { "X-Authorization": "wsscs0cswwgkg4s4ko40804o40s0444kckc" },
+    });
+    return res.json(response.data);
+    // const xbl = axios.create({
+    //     baseURL: "http://xbl.io/api/v2",
+    //     headers: { "X-Authorization": "wsscs0cswwgkg4s4ko40804o40s0444kckc", "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS", "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With" },
+    //     responseType: "json",
+    // });
+
+    // const account = xbl.get("/account").then((res) => {
+    //     console.log(res).catch((err) => {
+    //         console.log(err);
+    //     });
+    // });
+    // console.log(account);
+});
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
