@@ -5,7 +5,7 @@ const axios = require("axios");
 router.get("/", async (req, res) => {
     const response = await axios({
         method: "get",
-        url: "http://xbl.io/api/v2/account",
+        url: "http://xbl.io/api/v2/friends/search?gt=Itali4NStali0nz",
         responseType: "json",
         headers: { "X-Authorization": "wsscs0cswwgkg4s4ko40804o40s0444kckc" },
     });
