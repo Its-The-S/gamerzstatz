@@ -8,27 +8,62 @@ export default function Chart() {
   ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
   const options = {
+    scales: {
+      x: {
+        grid: {
+          color: "white",
+          lineWidth: 0.5,
+        },
+        ticks: {
+          color: "white",
+          font: {
+            weight: "normal",
+          },
+        },
+      },
+      y: {
+        grid: {
+          color: "white",
+          lineWidth: 0.5,
+        },
+        ticks: {
+          color: "white",
+          font: {
+            weight: "normal",
+          },
+        },
+      },
+    },
     responsive: true,
     plugins: {
       legend: {
         position: "top",
+        labels: {
+          color: "white",
+          font: {
+            weight: "normal",
+          },
+        },
       },
       title: {
         display: true,
-        text: `${currentUser.name} vs Itali4NStali0nz: MLB The Show: Call of Duty Edition`,
+        text: `${currentUser.gamertag} vs Itali4NStali0nz: MLB The Show: Call of Duty Edition`,
+        color: "white",
+        font: {
+          weight: "normal",
+        },
       },
     },
   };
-
   const labels = ["Wins", "Loses", "Kills", "RBIs"];
 
   const data = {
     labels,
     datasets: [
       {
-        label: currentUser.name,
+        label: currentUser.gamertag,
         data: [10, 24, 9, 37],
-        backgroundColor: "#333333",
+        backgroundColor: "#AAB1AE",
       },
       {
         label: "Itali4NStali0nz",
