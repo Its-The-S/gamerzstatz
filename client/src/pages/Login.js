@@ -3,8 +3,10 @@ import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
+import { useUser } from "../utils/UserContext";
 
 function Login(props) {
+    const { currentUser, fetchUserAccount } = useUser();
     const [formState, setFormState] = useState({ email: "", password: "" });
     const [login, { error }] = useMutation(LOGIN);
 
@@ -15,6 +17,7 @@ function Login(props) {
                 variables: { email: formState.email, password: formState.password },
             });
             const token = mutationResponse.data.login.token;
+            fetchUserAccount(mutationResponse.data.login.user.gamertag);
             Auth.login(token);
         } catch (e) {
             console.log(e);
