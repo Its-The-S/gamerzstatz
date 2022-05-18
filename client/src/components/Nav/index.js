@@ -5,10 +5,10 @@ import { useUser } from "../../utils/UserContext";
 
 // displays nav bar
 function Nav() {
-    //   const { currentUser, updateUser } = useUser();
-    //   React.useEffect(() => {
-    //     updateUser();
-    //   }, []);
+    const { currentUser, updateUser } = useUser();
+    React.useEffect(() => {
+        updateUser();
+    }, []);
 
     function showNavigation() {
         // displayed if user is logged in
@@ -28,9 +28,6 @@ function Nav() {
                         <div className="menu-button"></div>
                     </label>
                     <ul className="menu">
-                        <li>
-                            <Link to="/orderHistory">Order History</Link>
-                        </li>
                         <li>
                             {/* this is not using the Link component to logout or user and then refresh the application to the start */}
                             <a href="/" onClick={() => Auth.logout()}>
