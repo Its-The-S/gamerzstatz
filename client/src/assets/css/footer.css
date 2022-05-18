@@ -1,0 +1,17 @@
+.footer{
+    margin-top: 1rem;
+    padding: 1rem;
+    background: linear-gradient(to right, #AAB1AE, #DB1A20 );
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+.footer-card{ 
+    border-radius: 25px;
+    background: #333333;
+    padding: 20px;
+    width: 200px;
+    height: 70px;
+}
