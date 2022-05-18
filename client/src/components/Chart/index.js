@@ -8,6 +8,7 @@ export default function Chart() {
   ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
   const options = {
+    maintainAspectRatio: false,
     scales: {
       x: {
         grid: {
@@ -18,6 +19,7 @@ export default function Chart() {
           color: "white",
           font: {
             weight: "normal",
+            size: "15rem",
           },
         },
       },
@@ -30,11 +32,17 @@ export default function Chart() {
           color: "white",
           font: {
             weight: "normal",
+            size: "15rem",
           },
         },
       },
     },
-    responsive: true,
+    layout: {
+      padding: {
+        right: 15,
+        left: 15,
+      },
+    },
     plugins: {
       legend: {
         position: "top",
@@ -42,15 +50,17 @@ export default function Chart() {
           color: "white",
           font: {
             weight: "normal",
+            size: "15rem",
           },
         },
       },
       title: {
         display: true,
-        text: `${currentUser.gamertag} vs Itali4NStali0nz: MLB The Show: Call of Duty Edition`,
+        text: [`${currentUser.gamertag} vs Itali4NStali0nz`, `MLB The Show: Call of Duty Edition`],
         color: "white",
         font: {
           weight: "normal",
+          size: "20rem",
         },
       },
     },
@@ -63,7 +73,7 @@ export default function Chart() {
       {
         label: currentUser.gamertag,
         data: [10, 24, 9, 37],
-        backgroundColor: "#AAB1AE",
+        backgroundColor: "#aab1ae",
       },
       {
         label: "Itali4NStali0nz",
