@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
+import { useUser } from "../utils/UserContext";
 
 function Login(props) {
+    const { currentUser, fetchUserAccount } = useUser();
     const [formState, setFormState] = useState({ email: "", password: "" });
     const [login, { error }] = useMutation(LOGIN);
 
@@ -15,6 +17,7 @@ function Login(props) {
                 variables: { email: formState.email, password: formState.password },
             });
             const token = mutationResponse.data.login.token;
+            await fetchUserAccount(mutationResponse.data.login.user.gamertag);
             Auth.login(token);
         } catch (e) {
             console.log(e);
@@ -32,6 +35,7 @@ function Login(props) {
     return (
         <div className="container my-1">
             <Link to="/signup">← Go to Signup</Link>
+            {currentUser.length !== 0 ? <h2>Hello, {currentUser.gamertag}</h2> : <h2>Loading</h2>}
 
             <h2>Login</h2>
             <form onSubmit={handleFormSubmit}>
