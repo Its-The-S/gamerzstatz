@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Card from "../components/Card/index";
-import { useUser } from "../utils/UserContext";
+// import { useUser } from "../utils/UserContext";
 // const axios = require("axios");
 
 const Profile = () => {
     // const [account, getAccount] = useState("");
-    const { currentUser } = useUser();
+    // const { currentUser, fetchUserAccount } = useUser();
+    // let profileData = {};
 
     // useEffect(() => {
-    //     fetchAccount();
+    //     profileData = JSON.parse(localStorage.getItem("user"));
     // }, []);
+
+    const [profileData, setProfileData] = useState({});
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        setProfileData(user);
+    }, []);
 
     // const fetchAccount = async () => {
     //     try {
@@ -30,7 +38,8 @@ const Profile = () => {
     return (
         <div className="container">
             {/* {currentUser.length !== 0 ? <h2>Hello, {currentUser["profileUsers"][0].settings[2].value}</h2> : <h2>Loading</h2>} */}
-            {currentUser.length !== 0 ? <h2>Hello, {currentUser.gamertag}</h2> : <h2>Loading</h2>}
+            {/* {profileData.length !== 0 ? <h2>Hello, {profileData.gamertag}</h2> : <h2>Loading</h2>} */}
+            <h2>Hello, {profileData.gamertag}</h2>
             <Card />
         </div>
     );

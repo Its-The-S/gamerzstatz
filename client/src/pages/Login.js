@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { LOGIN } from "../utils/mutations";
@@ -17,7 +17,7 @@ function Login(props) {
                 variables: { email: formState.email, password: formState.password },
             });
             const token = mutationResponse.data.login.token;
-            fetchUserAccount(mutationResponse.data.login.user.gamertag);
+            await fetchUserAccount(mutationResponse.data.login.user.gamertag);
             Auth.login(token);
         } catch (e) {
             console.log(e);
@@ -35,6 +35,7 @@ function Login(props) {
     return (
         <div className="container my-1">
             <Link to="/signup">← Go to Signup</Link>
+            {currentUser.length !== 0 ? <h2>Hello, {currentUser.gamertag}</h2> : <h2>Loading</h2>}
 
             <h2>Login</h2>
             <form onSubmit={handleFormSubmit}>
