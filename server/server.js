@@ -25,6 +25,7 @@ app.use("/images", express.static(path.join(__dirname, "../client/images")));
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../client/build")));
 }
+
 // comment out lines 27-29 to see apollo server, type npm run start to just see the server
 // app.get("*", (req, res) => {
 //     res.sendFile(path.join(__dirname, "../client/build/index.html"));
