@@ -4,7 +4,9 @@ import Chart from "./../components/Chart";
 export default function ChartForNow() {
   return (
     <>
-      <Chart />
+      <div className="chart-container">
+        <Chart />
+      </div>
     </>
   );
 }
