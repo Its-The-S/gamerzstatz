@@ -3,10 +3,9 @@ import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
-import { useUser } from "../utils/UserContext";
+const axios = require("axios");
 
 function Login(props) {
-    const { currentUser, fetchUserAccount } = useUser();
     const [formState, setFormState] = useState({ email: "", password: "" });
     const [login, { error }] = useMutation(LOGIN);
 
@@ -17,7 +16,23 @@ function Login(props) {
                 variables: { email: formState.email, password: formState.password },
             });
             const token = mutationResponse.data.login.token;
-            await fetchUserAccount(mutationResponse.data.login.user.gamertag);
+            // await fetchUserAccount(mutationResponse.data.login.user.gamertag);
+
+            const fetchAccount = await axios.get(`/api/account/${mutationResponse.data.login.user.gamertag}`);
+            const newUser = {
+                name: `${mutationResponse.data.login.user.firstName} ${mutationResponse.data.login.user.lastName}`,
+                gamertag: mutationResponse.data.login.user.gamertag,
+                email: mutationResponse.data.login.user.email,
+                xuid: fetchAccount.data.profileUsers[0].id,
+                avatar: fetchAccount.data.profileUsers[0].settings[0].value,
+                gamerscore: fetchAccount.data.profileUsers[0].settings[1].value,
+            };
+            localStorage.setItem("user", JSON.stringify(newUser));
+
+            const fetchAchieve = await axios.get(`/api/achieve/${newUser.xuid}`);
+            console.log(fetchAchieve.data);
+            localStorage.setItem("allAchievements", JSON.stringify(fetchAchieve.data));
+
             Auth.login(token);
         } catch (e) {
             console.log(e);
@@ -35,8 +50,6 @@ function Login(props) {
     return (
         <div className="container my-1">
             <Link to="/signup">← Go to Signup</Link>
-            {currentUser.length !== 0 ? <h2>Hello, {currentUser.gamertag}</h2> : <h2>Loading</h2>}
-
             <h2>Login</h2>
             <form onSubmit={handleFormSubmit}>
                 <div className="flex-row space-between my-2">
