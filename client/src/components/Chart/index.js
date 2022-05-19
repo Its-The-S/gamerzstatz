@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { useUser } from "../../utils/UserContext";
+// import { useUser } from "../../utils/UserContext";
 
 export default function Chart() {
-  const { currentUser } = useUser();
+  // const { currentUser } = useUser();
   ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+
+  const [profileData, setProfileData] = useState({});
+  const [achieveData, setAchieveData] = useState({});
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    setProfileData(user);
+
+    const allAchievements = JSON.parse(localStorage.getItem("allAchievements"));
+    setAchieveData(allAchievements);
+  }, []);
 
   const options = {
     maintainAspectRatio: false,
@@ -56,7 +67,7 @@ export default function Chart() {
       },
       title: {
         display: true,
-        text: [`${currentUser.gamertag} vs Itali4NStali0nz`, `MLB The Show: Call of Duty Edition`],
+        text: [`${profileData.gamertag} vs Itali4NStali0nz`, `MLB The Show: Call of Duty Edition`],
         color: "white",
         font: {
           weight: "normal",
@@ -71,7 +82,7 @@ export default function Chart() {
     labels,
     datasets: [
       {
-        label: currentUser.gamertag,
+        label: profileData.gamertag,
         data: [10, 24, 9, 37],
         backgroundColor: "#aab1ae",
       },
@@ -83,10 +94,12 @@ export default function Chart() {
       },
     ],
   };
-
-  return (
-    <>
-      <Bar options={options} data={data} />
-    </>
-  );
+  if (achieveData.titles !== undefined && achieveData.titles.length > 0) {
+    return (
+      <>
+        <Bar options={options} data={data} />
+      </>
+    );
+  }
+  return <></>;
 }
