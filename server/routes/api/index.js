@@ -1,7 +1,9 @@
 const router = require("express").Router();
 const accountRoutes = require("./accountRoutes");
+const achievementRoutes = require("./achievementRoutes");
 
-// Prefix all routes defined in `accountRoutes.js` with `/books
+// route one more level down to account or achieve
 router.use("/account", accountRoutes);
+router.use("/achieve", achievementRoutes);
 
 module.exports = router;

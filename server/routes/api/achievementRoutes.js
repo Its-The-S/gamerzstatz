@@ -1,11 +1,12 @@
 const router = require("express").Router();
 const axios = require("axios");
 
-// get account info
-router.get("/:gamertag", async (req, res) => {
+// get all achievement info
+router.get("/:xuid", async (req, res) => {
+    // const user = JSON.parse(localStorage.getItem("user"));
     const response = await axios({
         method: "get",
-        url: `http://xbl.io/api/v2/friends/search?gt=${req.params.gamertag}`,
+        url: `https://xbl.io/api/v2/achievements/player/${req.params.xuid}`,
         responseType: "json",
         headers: { "X-Authorization": "wsscs0cswwgkg4s4ko40804o40s0444kckc" },
     });

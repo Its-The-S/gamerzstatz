@@ -13,10 +13,14 @@ const Profile = () => {
     // }, []);
 
     const [profileData, setProfileData] = useState({});
+    const [achieveData, setAchieveData] = useState({});
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("user"));
         setProfileData(user);
+
+        const allAchievements = JSON.parse(localStorage.getItem("allAchievements"));
+        setAchieveData(allAchievements);
     }, []);
 
     // const fetchAccount = async () => {

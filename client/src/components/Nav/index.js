@@ -1,14 +1,14 @@
 import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
-import { useUser } from "../../utils/UserContext";
+// import { useUser } from "../../utils/UserContext";
 
 // displays nav bar
 function Nav() {
-    const { currentUser, updateUser } = useUser();
-    React.useEffect(() => {
-        updateUser();
-    }, []);
+    // const { currentUser, updateUser } = useUser();
+    // React.useEffect(() => {
+    //     updateUser();
+    // }, []);
 
     function showNavigation() {
         // displayed if user is logged in
