@@ -1,13 +1,13 @@
 import React from "react";
-import Image from "../../assets/Minecraft_cover.png";
+// import Image from "../../assets/Minecraft_cover.png";
 
-export default function Card() {
+export default function Card(props) {
     //hard code for now
-    const games = {
-        title: "Minecraft",
-        description: "Create your own world",
-        id: 1,
-    };
+    // const games = {
+    //     title: "Minecraft",
+    //     description: "Create your own world",
+    //     id: 1,
+    // };
 
     const cardStyle = {
         width: "18rem",
@@ -15,15 +15,18 @@ export default function Card() {
         padding: "15px",
     };
 
-    //src is hardcoded for now, but will soon be populated with cover art
     //button will be used
     return (
         <div className="container">
             <div className="card" style={cardStyle}>
-                <h5 className="card-title">{games.title}</h5>
-                <img className="card-img-top" src={Image} alt="Card cap" />
+                <h5 className="card-title">{props.title}</h5>
+                <img className="card-img-top" src={props.coverArt} alt="Card cap" />
                 <div className="card-body">
-                    <p className="card-text">{games.description}</p>
+                    <p>Completed Achievements: {props.currentAchievements}</p>
+                    <p>
+                        Gamerscore: {props.currentGamerScore} / {props.totalGamerScore}
+                    </p>
+                    <p>Percent Complete: {props.percentAchieve}%</p>
                     <button href="#" className="btn btn-primary">
                         Check my Stats
                     </button>
