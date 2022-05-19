@@ -30,7 +30,6 @@ function Login(props) {
             localStorage.setItem("user", JSON.stringify(newUser));
 
             const fetchAchieve = await axios.get(`/api/achieve/${newUser.xuid}`);
-            console.log(fetchAchieve.data);
             localStorage.setItem("allAchievements", JSON.stringify(fetchAchieve.data));
 
             Auth.login(token);
