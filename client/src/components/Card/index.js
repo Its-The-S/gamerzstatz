@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // import Image from "../../assets/Minecraft_cover.png";
 
 export default function Card(props) {
@@ -27,9 +28,10 @@ export default function Card(props) {
                         Gamerscore: {props.currentGamerScore} / {props.totalGamerScore}
                     </p>
                     <p>Percent Complete: {props.percentAchieve}%</p>
-                    <button href="#" className="btn btn-primary">
+                    <Link to={`/compare/${props.titleId}`}>Check My Stats</Link>
+                    {/* <button href="/compare" className="btn btn-primary">
                         Check my Stats
-                    </button>
+                    </button> */}
                 </div>
             </div>
         </div>

@@ -46,3 +46,4 @@ export const Carousel = () => {
 };
 
 export default Carousel;
+

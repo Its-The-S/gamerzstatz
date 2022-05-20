@@ -33,11 +33,12 @@ const Profile = () => {
             ) : (
                 <h2>Loading...</h2>
             )} */}
+
                 {/* <Card />; */}
                 <div>
                     {achieveData.titles.map((game, index) => {
                         if (index <= cardMaxIndex) {
-                            return <Card key={game.titleId} coverArt={game.displayImage} currentAchievements={game.achievement.currentAchievements} currentGamerScore={game.achievement.currentGamerscore} percentAchieve={game.achievement.progressPercentage} title={game.name} totalGamerScore={game.achievement.totalGamerscore} />;
+                            return <Card titleId={game.titleId} coverArt={game.displayImage} currentAchievements={game.achievement.currentAchievements} currentGamerScore={game.achievement.currentGamerscore} percentAchieve={game.achievement.progressPercentage} title={game.name} totalGamerScore={game.achievement.totalGamerscore} />;
                         } else {
                             return <></>;
                         }
@@ -47,6 +48,7 @@ const Profile = () => {
         );
     }
     return <></>;
+    main;
 };
 
 export default Profile;

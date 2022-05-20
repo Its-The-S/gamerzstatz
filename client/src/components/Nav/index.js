@@ -29,6 +29,9 @@ function Nav() {
                     </label>
                     <ul className="menu">
                         <li>
+                            <a href="/profile">Profile</a>
+                        </li>
+                        <li>
                             {/* this is not using the Link component to logout or user and then refresh the application to the start */}
                             <a href="/" onClick={() => Auth.logout()}>
                                 Logout
