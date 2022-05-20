@@ -2,16 +2,79 @@
   margin-top: 1rem;
   padding: 1rem;
   background: linear-gradient(to right, #aab1ae, #db1a20);
-  position: fixed;
+  position: relative;
   bottom: 0;
   left: 0;
   width: 100%;
 }
+.df {
+  display: flex;
+}
 
 .footer-card {
+  margin: auto;
   border-radius: 25px;
   background: #333333;
   padding: 20px;
   width: 200px;
   height: 70px;
+  text-align: center;
+}
+
+.footer-content h3{
+  line-height: 6%;
+}
+.footer-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+
+.socials{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0 3rem 0;
+  text-align: center ;
+}
+
+.socials li{
+  margin: 0 10px;
+}
+
+.social-layout {
+  display: flex;
+}
+
+.socials a{
+  text-decoration: none;
+  color: #fff;
+  border: 1.1px solid white;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.socials a i{
+  font-size: 1.1rem;
+  width: 20px;
+  transition: color .4s ease;
+}
+
+.socials a:hover i{
+  color: #016FB9;
+}
+.footer-card{ 
+  border-radius: 25px;
+  padding: 8px;
+}
+
+
+@media (max-width: 700px) {
+  .df {
+    flex-direction: column
+  };
 }

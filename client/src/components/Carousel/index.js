@@ -1,6 +1,6 @@
 import React from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import "@splidejs/react-splide/css";
+// import "@splidejs/react-splide/css";
 //hard code images
 import Sims from "../../assets/sims.png";
 import Cod from "../../assets/cod.jpg";
