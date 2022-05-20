@@ -11,7 +11,7 @@ export default function Chart(props) {
     const [profileData, setProfileData] = useState({});
     const [achieveData, setAchieveData] = useState({});
     const [gameData, setGameData] = useState({});
-    const [friendData, setFriendData] = useState({});
+    // const [friendData, setFriendData] = useState({});
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("user"));
@@ -21,18 +21,22 @@ export default function Chart(props) {
         setAchieveData(allAchievements);
 
         const fetchGame = async () => {
-            // const user = await JSON.parse(localStorage.getItem("user"));
-
             const data = await axios.get(`/api/game/${user.xuid}/${props.titleId}`);
-            console.log(data);
             setGameData(data);
             return data;
         };
         fetchGame();
-        // setGameData(gameStats);
 
-        const friends = JSON.parse(localStorage.getItem("friendsList"));
-        setFriendData(friends);
+        // const fetchFriends = async () => {
+        //     const friends = await axios.get(`/api/friend/${user.xuid}`);
+        //     console.log("friends", friends);
+        //     setFriendData(friends);
+        //     return friends;
+        // };
+        // fetchFriends();
+
+        // const friends = JSON.parse(localStorage.getItem("friendsList"));
+        // setFriendData(friends);
     }, []);
 
     const options = {
