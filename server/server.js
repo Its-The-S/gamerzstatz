@@ -27,13 +27,13 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // comment out lines 30-36 to see apollo server, type npm run start to just see the server
-// app.get("/*", function (req, res) {
-//     res.sendFile(path.join(__dirname, "../client/build/index.html"), function (err) {
-//         if (err) {
-//             res.status(500).send(err);
-//         }
-//     });
-// });
+app.get("/*", function (req, res) {
+    res.sendFile(path.join(__dirname, "../client/build/index.html"), function (err) {
+        if (err) {
+            res.status(500).send(err);
+        }
+    });
+});
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
