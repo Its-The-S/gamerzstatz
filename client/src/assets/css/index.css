@@ -13,19 +13,26 @@
   box-sizing: border-box;
 }
 
-html,
+html, #root, 
 body {
-  min-height: 100%;
+  height: 100%;
 }
 
 body {
+
   margin: 0;
   padding: 0;
+  min-height: 100vh;
   font-family: 'Karla', sans-serif;
   font-weight: 400;
   line-height: 1.5;
   font-size: 20px;
   color: var(--light);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
 }
 
 h1,
@@ -136,6 +143,7 @@ input:focus {
 }
 
 .container {
+  flex-grow: 1;
   width: 85%;
   max-width: 1200px;
   margin-left: auto;
