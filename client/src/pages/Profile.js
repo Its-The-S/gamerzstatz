@@ -20,7 +20,7 @@ const Profile = () => {
                 <div>
                     {/* <i className="fa-brands fa-xbox"></i> */}
 
-                    {/* <img src={profileData.avatar} alt="profile avatar" /> */}
+                    <img src={profileData.avatar} alt="this user's profile avatar" />
                     <h2>{profileData.gamertag}</h2>
                     <h4>Gamerscore: {profileData.gamerscore}</h4>
                 </div>
