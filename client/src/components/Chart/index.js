@@ -11,6 +11,7 @@ export default function Chart(props) {
     const [profileData, setProfileData] = useState({});
     const [achieveData, setAchieveData] = useState({});
     const [gameData, setGameData] = useState({});
+    const [chosenFriendData, setChosenFriendData] = useState();
     // const [friendData, setFriendData] = useState({});
 
     useEffect(() => {
@@ -20,10 +21,13 @@ export default function Chart(props) {
         const allAchievements = JSON.parse(localStorage.getItem("allAchievements"));
         setAchieveData(allAchievements);
 
+        const chosenFriend = JSON.parse(localStorage.getItem("chosenFriend"));
+        setChosenFriendData(chosenFriend);
+
         const fetchGame = async () => {
-            const data = await axios.get(`/api/game/${user.xuid}/${props.titleId}`);
-            setGameData(data);
-            return data;
+            const statFetch = await axios.get(`/api/game/${user.xuid}/${props.titleId}`);
+            setGameData(statFetch);
+            return statFetch;
         };
         fetchGame();
 
@@ -38,6 +42,10 @@ export default function Chart(props) {
         // const friends = JSON.parse(localStorage.getItem("friendsList"));
         // setFriendData(friends);
     }, []);
+
+    let gameTitle = gameData.data?.achievements[0].titleAssociations[0].name || "Loading...";
+
+    const labels = ["Wins", "Loses", "Kills", "RBIs"];
 
     const options = {
         maintainAspectRatio: false,
@@ -88,7 +96,7 @@ export default function Chart(props) {
             },
             title: {
                 display: true,
-                text: [`${profileData.gamertag} vs Itali4NStali0nz`, `${gameData.data?.achievements[0].titleAssociations[0].name}`],
+                text: [`${profileData.gamertag} vs ${chosenFriendData}`, `${gameTitle}`],
                 color: "white",
                 font: {
                     weight: "normal",
@@ -97,7 +105,6 @@ export default function Chart(props) {
             },
         },
     };
-    const labels = ["Wins", "Loses", "Kills", "RBIs"];
 
     const data = {
         labels,
@@ -108,7 +115,7 @@ export default function Chart(props) {
                 backgroundColor: "#aab1ae",
             },
             {
-                label: "Itali4NStali0nz",
+                label: chosenFriendData,
                 data: [5, 43, 19, 87],
                 // data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
                 backgroundColor: "#DB1A20",
