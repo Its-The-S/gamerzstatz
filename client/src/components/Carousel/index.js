@@ -127,7 +127,7 @@ export const Carousel = () => {
         </SplideSlide>
         <SplideSlide>
           <h4>
-            Joes's Pick: <span>Batman Arkham Knight</span>
+            Joe's Pick: <span>Batman Arkham Knight</span>
           </h4>
           <img src={Batman} alt={"Cover art for Minecraft"} style={imageStyle} />
           <p>

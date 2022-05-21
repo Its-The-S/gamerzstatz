@@ -11,9 +11,9 @@
   display: flex;
 }
 
-/* .hidden {
+.sm {
   visibility: hidden;
-} */
+}
 
 .footer-card {
   margin: auto;
@@ -23,6 +23,7 @@
   width: 200px;
   height: 70px;
   text-align: center;
+  display: none;
 }
 
 .footer-content h3{
@@ -81,4 +82,19 @@
   .df {
     flex-direction: column
   };
+}
+/* Check if the screen size is at least 600px */
+@media only screen and (min-width: 701px) {
+  .lg {
+      display: block;
+  }
+}
+
+
+/* check if the screen size is at most 700px */
+@media only screen and (max-width: 700px) {
+  .sm {
+      display: block;
+      visibility: visible;
+  }
 }
