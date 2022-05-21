@@ -5,7 +5,9 @@ const axios = require("axios");
 
 export default function Compare() {
     const { titleId } = useParams();
+    const [friendListData, setFriendListData] = useState();
     const [chosenFriendData, setChosenFriendData] = useState();
+    const [sortedFriendData, setSortedFriendData] = useState(["Loading Gamertags..."]);
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("user"));
@@ -18,17 +20,26 @@ export default function Compare() {
             const friends = await axios.get(`/api/friend/${user.xuid}`);
             // setFriendData(friends);
             localStorage.setItem("friendsList", JSON.stringify(friends.data.people));
+            // setFriendListData(friends.data.people);
+            // const friendsArray = JSON.parse(localStorage.getItem("friendsList"));
+            const friendTags = [];
+            if (friends) {
+                friends.data.people.map((friend) => {
+                    friendTags.push(friend.gamertag);
+                });
+                setSortedFriendData(friendTags.sort());
+            }
             return friends;
         };
         fetchFriends();
     });
 
-    const friendsArray = JSON.parse(localStorage.getItem("friendsList"));
-    const friendTags = [];
-    friendsArray.map((friend) => {
-        friendTags.push(friend.gamertag);
-    });
-    const sortedFriends = friendTags.sort();
+    // const friendsArray = JSON.parse(localStorage.getItem("friendsList"));
+    // const friendTags = [];
+    // friendsArray.map((friend) => {
+    //     friendTags.push(friend.gamertag);
+    // });
+    // const sortedFriends = friendTags.sort();
 
     function handleChange() {
         localStorage.setItem("chosenFriend", JSON.stringify(document.querySelector("#friendSelect").value));
@@ -40,13 +51,15 @@ export default function Compare() {
             <div>
                 <span>Compare to: </span>
                 <select id="friendSelect" onChange={handleChange}>
-                    {sortedFriends.map((friend) => {
-                        return <option value={friend}>{friend}</option>;
-                    })}
+                    {sortedFriendData &&
+                        sortedFriendData.map((friend) => {
+                            return (
+                                <option key={friend} value={friend}>
+                                    {friend}
+                                </option>
+                            );
+                        })}
                 </select>
-                {/* <button type="submit" form="friendForm" id="friendFormSubmit" onSubmit={handleChange}>
-                    Go!
-                </button> */}
             </div>
             <div className="chart-container">
                 <Chart titleId={titleId} />
