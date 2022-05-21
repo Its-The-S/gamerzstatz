@@ -60,6 +60,12 @@ export default function Footer() {
             <i className="fa fa-github px-1" />
           </a>
         </div>
+        {/* <div className="footer-card">
+          <h6>Its The S</h6>
+          <a href="https://github.com/Its-The-S/gamerzstatz" target="_blank">
+            <i className="fa fa-github px-1" />
+          </a>
+        </div> */}
       </footer>
     </div>
   );
