@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.54312923.chunk.css",
+    "main.js": "/static/js/main.4c786907.chunk.js",
+    "main.js.map": "/static/js/main.4c786907.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.0c2cdeba.js",
+    "runtime-main.js.map": "/static/js/runtime-main.0c2cdeba.js.map",
+    "static/css/2.23af7174.chunk.css": "/static/css/2.23af7174.chunk.css",
+    "static/js/2.20de4708.chunk.js": "/static/js/2.20de4708.chunk.js",
+    "static/js/2.20de4708.chunk.js.map": "/static/js/2.20de4708.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.23af7174.chunk.css.map": "/static/css/2.23af7174.chunk.css.map",
+    "static/css/main.54312923.chunk.css.map": "/static/css/main.54312923.chunk.css.map",
+    "static/js/2.20de4708.chunk.js.LICENSE.txt": "/static/js/2.20de4708.chunk.js.LICENSE.txt",
+    "static/media/Batman_Arkham_Knight_Cover_Art.eff2b381.jpg": "/static/media/Batman_Arkham_Knight_Cover_Art.eff2b381.jpg",
+    "static/media/Minecraft_cover.c3ecdd3b.png": "/static/media/Minecraft_cover.c3ecdd3b.png",
+    "static/media/cod.259beb29.jpg": "/static/media/cod.259beb29.jpg",
+    "static/media/dmc5se-square.4cf2fd40.jpeg": "/static/media/dmc5se-square.4cf2fd40.jpeg",
+    "static/media/pvz.5e8c1f14.jpg": "/static/media/pvz.5e8c1f14.jpg",
+    "static/media/sims.1084e00f.png": "/static/media/sims.1084e00f.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0c2cdeba.js",
+    "static/css/2.23af7174.chunk.css",
+    "static/js/2.20de4708.chunk.js",
+    "static/css/main.54312923.chunk.css",
+    "static/js/main.4c786907.chunk.js"
+  ]
+}
