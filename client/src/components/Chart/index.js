@@ -10,6 +10,7 @@ export default function Chart(props) {
 
     const [profileData, setProfileData] = useState({});
     const [achieveData, setAchieveData] = useState({});
+    const [friendAchieveData, setFriendAchieveData] = useState({});
     const [gameData, setGameData] = useState({});
     const [chosenFriendData, setChosenFriendData] = useState();
     // const [friendData, setFriendData] = useState({});
@@ -19,14 +20,35 @@ export default function Chart(props) {
         setProfileData(user);
 
         const allAchievements = JSON.parse(localStorage.getItem("allAchievements"));
-        setAchieveData(allAchievements);
+        const currentTitle = allAchievements.titles.filter((title) => {
+            return title.titleId === props.titleId;
+        });
+        console.log(currentTitle);
+        setAchieveData(currentTitle[0].achievement);
 
         const chosenFriend = JSON.parse(localStorage.getItem("chosenFriend"));
         setChosenFriendData(chosenFriend);
 
+        const fetchFriendAchievements = async () => {
+            const friendList = JSON.parse(localStorage.getItem("friendsList"));
+            const friendId = friendList.filter((friend) => {
+                return friend.gamertag === chosenFriend;
+            });
+            console.log("fList", friendId[0].xuid);
+            const fetchFriendAchieve = await axios.get(`/api/achieve/${friendId[0].xuid}`);
+            console.log("fetch", fetchFriendAchieve);
+            const currentFriendTitle = fetchFriendAchieve.data.titles.filter((title) => {
+                return title.titleId === props.titleId;
+            });
+            console.log("friend", currentFriendTitle);
+            setFriendAchieveData(currentFriendTitle[0]?.achievement);
+        };
+        fetchFriendAchievements();
+
         const fetchGame = async () => {
             const statFetch = await axios.get(`/api/game/${user.xuid}/${props.titleId}`);
             setGameData(statFetch);
+            console.log(statFetch);
             return statFetch;
         };
         fetchGame();
@@ -45,7 +67,7 @@ export default function Chart(props) {
 
     let gameTitle = gameData.data?.achievements[0].titleAssociations[0].name || "Loading...";
 
-    const labels = ["Wins", "Loses", "Kills", "RBIs"];
+    const labels = ["Achievements", "Progress", "Gamerscore"];
 
     const options = {
         maintainAspectRatio: false,
@@ -111,24 +133,24 @@ export default function Chart(props) {
         datasets: [
             {
                 label: profileData.gamertag,
-                data: [10, 24, 9, 37],
+                data: [achieveData?.currentAchievements, achieveData?.progressPercentage, achieveData?.currentGamerscore],
                 backgroundColor: "#aab1ae",
             },
             {
                 label: chosenFriendData,
-                data: [5, 43, 19, 87],
+                data: [friendAchieveData?.currentAchievements, friendAchieveData?.progressPercentage, friendAchieveData?.currentGamerscore],
                 // data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
                 backgroundColor: "#DB1A20",
             },
         ],
     };
 
-    if (achieveData.titles !== undefined && achieveData.titles.length > 0) {
-        return (
-            <>
-                <Bar options={options} data={data} />
-            </>
-        );
-    }
+    // if (achieveData.titles !== undefined && achieveData.titles.length > 0) {
+    return (
+        <>
+            <Bar options={options} data={data} />
+        </>
+    );
+    // }
     return <></>;
 }
