@@ -6,7 +6,7 @@ export default function Footer() {
     <div>
       <footer className="df footer">
         {/* footer card for all members */}
-        <div className="footer-card">
+        <div className="footer-card lg">
           <h6>Joe Palmisano</h6>
           <a href="https://www.linkedin.com/in/joseph-palmisano-jnp/" className="" target="_blank">
             <i className="fa fa-linkedin px-1" />
@@ -15,7 +15,7 @@ export default function Footer() {
             <i className="fa fa-github px-1" />
           </a>
         </div>
-        <div className="footer-card">
+        <div className="footer-card lg">
           <h6>Aidan Chamberlain</h6>
           <a
             href="https://www.linkedin.com/in/aidan-chamberlain-776b8b90/"
@@ -29,7 +29,7 @@ export default function Footer() {
           </a>
         </div>
         {/* brett */}
-        <div className="footer-card">
+        <div className="footer-card lg">
           <h6>Brett Gould</h6>
           <a href="https://www.linkedin.com/in/brettdgould//" className="" target="_blank">
             <i className="fa fa-linkedin px-1" />
@@ -38,7 +38,7 @@ export default function Footer() {
             <i className="fa fa-github px-1" />
           </a>
         </div>
-        <div className="footer-card">
+        <div className="footer-card lg">
           <h6>Maya Tillman</h6>
           <a
             href="https://www.linkedin.com/in/maya-tillman-430084227/"
@@ -51,7 +51,7 @@ export default function Footer() {
             <i className="fa fa-github px-1" />
           </a>
         </div>
-        <div className="footer-card">
+        <div className="footer-card lg">
           <h6>Thomas Frohm</h6>
           <a href="https://www.linkedin.com/in/thomas-f-767203232/" target="_blank">
             <i className="fa fa-linkedin px-1" />
@@ -60,12 +60,12 @@ export default function Footer() {
             <i className="fa fa-github px-1" />
           </a>
         </div>
-        {/* <div className="footer-card">
+        <div className="footer-card sm">
           <h6>Its The S</h6>
           <a href="https://github.com/Its-The-S/gamerzstatz" target="_blank">
             <i className="fa fa-github px-1" />
           </a>
-        </div> */}
+        </div>
       </footer>
     </div>
   );
