@@ -25,12 +25,9 @@ const Profile = () => {
                     <h4>Gamerscore: {profileData.gamerscore}</h4>
                 </div>
 
-        <div className="df">
+        <div className="df fwrap">
           {achieveData.titles.map((game, index) => {
-            if (
-              index <= cardMaxIndex &&
-              game.achievement.progressPercentage > 0
-            ) {
+            if (index <= cardMaxIndex && game.achievement.progressPercentage > 0) {
               return (
                 <GameCard
                   key={index}

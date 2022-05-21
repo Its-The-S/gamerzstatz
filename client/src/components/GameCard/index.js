@@ -1,9 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Card from "react-bootstrap/Card";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-// import Button from "react-bootstrap/Button";
+import Card from "../GameCard/index";
 
 export default function GameCard(props) {
   const cardStyle = {
