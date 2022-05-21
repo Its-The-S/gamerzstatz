@@ -11,6 +11,10 @@
   display: flex;
 }
 
+/* .hidden {
+  visibility: hidden;
+} */
+
 .footer-card {
   margin: auto;
   border-radius: 25px;
