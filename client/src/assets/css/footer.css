@@ -1,8 +1,8 @@
 .footer {
   margin-top: 1rem;
   padding: 1rem;
-  background: linear-gradient(to right, #aab1ae, #db1a20);
-  position: relative;
+  /* background: linear-gradient(to right, #aab1ae, #db1a20); */
+  position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;

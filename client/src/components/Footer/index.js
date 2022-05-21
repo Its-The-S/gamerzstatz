@@ -4,7 +4,7 @@ import React from "react";
 export default function Footer() {
   return (
     <div>
-      <footer className="df">
+      <footer className="df footer">
         {/* footer card for all members */}
         <div className="footer-card">
           <h6>Joe Palmisano</h6>
