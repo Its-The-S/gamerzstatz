@@ -11,6 +11,10 @@
   display: flex;
 }
 
+.fwrap {
+  flex-wrap: wrap;
+}
+
 .sm {
   visibility: hidden;
 }
