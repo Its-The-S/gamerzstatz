@@ -17,8 +17,6 @@ const Profile = () => {
     if (achieveData.titles !== undefined && achieveData.titles.length > 0) {
         return (
             <div className="container">
-                {/* {currentUser.length !== 0 ? <h2>Hello, {currentUser["profileUsers"][0].settings[2].value}</h2> : <h2>Loading</h2>} */}
-                {/* {profileData.length !== 0 ? <h2>Hello, {profileData.gamertag}</h2> : <h2>Loading</h2>} */}
                 <div>
                     {/* <i className="fa-brands fa-xbox"></i> */}
 
@@ -26,23 +24,11 @@ const Profile = () => {
                     <h2>{profileData.gamertag}</h2>
                     <h4>Gamerscore: {profileData.gamerscore}</h4>
                 </div>
-                {/* {achieveData.length !== undefined ? (
-                <div>
-                    {achieveData.titles.map((game) => {
-                        <Card />;
-                    })}
-                </div>
-            ) : (
-                <h2>Loading...</h2>
-            )} */}
 
-                {/* <Card />; */}
                 <div>
                     {achieveData.titles.map((game, index) => {
-                        if (index <= cardMaxIndex) {
-                            return <Card titleId={game.titleId} coverArt={game.displayImage} currentAchievements={game.achievement.currentAchievements} currentGamerScore={game.achievement.currentGamerscore} percentAchieve={game.achievement.progressPercentage} title={game.name} totalGamerScore={game.achievement.totalGamerscore} />;
-                        } else {
-                            return <></>;
+                        if (index <= cardMaxIndex && game.achievement.progressPercentage > 0) {
+                            return <Card key={index} titleId={game.titleId} coverArt={game.displayImage} currentAchievements={game.achievement.currentAchievements} currentGamerScore={game.achievement.currentGamerscore} percentAchieve={game.achievement.progressPercentage} title={game.name} totalGamerScore={game.achievement.totalGamerscore} />;
                         }
                     })}
                 </div>
@@ -50,7 +36,6 @@ const Profile = () => {
         );
     }
     return <></>;
-    main;
 };
 
 export default Profile;
