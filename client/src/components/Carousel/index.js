@@ -56,27 +56,16 @@ export const Carousel = () => {
           </p>
           <p>
             See who is streaming it on{" "}
-            <a
-              href="https://www.twitch.tv/search?term=devil%20may%20cry%205"
-              target="_blank"
-            >
+            <a href="https://www.twitch.tv/search?term=devil%20may%20cry%205" target="_blank">
               Twitch's Website
             </a>
           </p>
         </SplideSlide>
         <SplideSlide>
-          <img
-            src={Pvz}
-            alt={"Battle against plants and zombies."}
-            style={imageStyle}
-          />
+          <img src={Pvz} alt={"Battle against plants and zombies."} style={imageStyle} />
         </SplideSlide>
         <SplideSlide>
-          <img
-            src={Cod}
-            alt={"Action-packed game with a lot of scary noises"}
-            style={imageStyle}
-          />
+          <img src={Cod} alt={"Action-packed game with a lot of scary noises"} style={imageStyle} />
         </SplideSlide>
         <SplideSlide>
           <img
