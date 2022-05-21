@@ -1,7 +1,8 @@
 .footer {
   margin-top: 1rem;
   padding: 1rem;
-  /* background: linear-gradient(to right, #aab1ae, #db1a20); */
+  border-top: 5px solid #db1a20;
+   /* background: linear-gradient(to right, #aab1ae, #db1a20); */
   position: relative;
   bottom: 0;
   left: 0;
@@ -9,6 +10,10 @@
 }
 .df {
   display: flex;
+}
+
+.fwrap {
+  flex-wrap: wrap;
 }
 
 .sm {
