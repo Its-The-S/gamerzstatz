@@ -10,11 +10,13 @@ export default function Compare() {
     const [sortedFriendData, setSortedFriendData] = useState(["Loading Gamertags..."]);
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem("user"));
-
         localStorage.setItem("chosenFriend", JSON.stringify(document.querySelector("#friendSelect").value));
         const chosenFriend = JSON.parse(localStorage.getItem("chosenFriend"));
         setChosenFriendData(chosenFriend);
+    });
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("user"));
 
         const fetchFriends = async () => {
             const friends = await axios.get(`/api/friend/${user.xuid}`);
@@ -24,15 +26,17 @@ export default function Compare() {
             // const friendsArray = JSON.parse(localStorage.getItem("friendsList"));
             const friendTags = [];
             if (friends) {
-                friends.data.people.map((friend) => {
+                friends?.data?.people?.map((friend) => {
                     friendTags.push(friend.gamertag);
                 });
-                setSortedFriendData(friendTags.sort());
+                // FIGURE OUT SORT WITHOUT CHANGING STATE
+                const sortedFriends = friendTags.sort();
+                setSortedFriendData(sortedFriends);
             }
             return friends;
         };
         fetchFriends();
-    });
+    }, []);
 
     // const friendsArray = JSON.parse(localStorage.getItem("friendsList"));
     // const friendTags = [];
