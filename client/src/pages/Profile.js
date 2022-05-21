@@ -20,7 +20,9 @@ const Profile = () => {
                 {/* {currentUser.length !== 0 ? <h2>Hello, {currentUser["profileUsers"][0].settings[2].value}</h2> : <h2>Loading</h2>} */}
                 {/* {profileData.length !== 0 ? <h2>Hello, {profileData.gamertag}</h2> : <h2>Loading</h2>} */}
                 <div>
-                    <img src={profileData.avatar} alt="profile avatar" />
+                    {/* <i className="fa-brands fa-xbox"></i> */}
+
+                    {/* <img src={profileData.avatar} alt="profile avatar" /> */}
                     <h2>{profileData.gamertag}</h2>
                     <h4>Gamerscore: {profileData.gamerscore}</h4>
                 </div>
