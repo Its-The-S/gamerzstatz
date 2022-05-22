@@ -3,7 +3,6 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 //hard code images
 import dmc5 from "../../assets/dmc5.png";
-import Sims from "../../assets/sims.png";
 import Cod from "../../assets/cod.jpg";
 import Pvz from "../../assets/pvz.jpg";
 import Minecraft from "../../assets/Minecraft_cover.png";

@@ -47,16 +47,20 @@ function Login(props) {
     };
 
     return (
-        <div className="container my-1">
+        <div className="container container-center my-1">
             <Link to="/signup">← Go to Signup</Link>
             <h2>Login</h2>
-            <form onSubmit={handleFormSubmit}>
-                <div className="flex-row space-between my-2">
-                    <label htmlFor="email">Email address:</label>
+            <form className="container" onSubmit={handleFormSubmit}>
+                <div className="flex-row my-2">
+                    <label className="ta-l ws-nw" htmlFor="email">
+                        Email Address:
+                    </label>
                     <input placeholder="youremail@test.com" name="email" type="email" id="email" onChange={handleChange} />
                 </div>
                 <div className="flex-row space-between my-2">
-                    <label htmlFor="pwd">Password:</label>
+                    <label className="ta-l" htmlFor="pwd">
+                        Password:
+                    </label>
                     <input placeholder="******" name="password" type="password" id="pwd" onChange={handleChange} />
                 </div>
                 {error ? (

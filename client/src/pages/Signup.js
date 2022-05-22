@@ -48,11 +48,11 @@ function Signup(props) {
     };
 
     return (
-        <div className="container my-1">
+        <div className="container container-center my-1">
             <Link to="/login">← Go to Login</Link>
 
             <h2>Signup</h2>
-            <form onSubmit={handleFormSubmit}>
+            <form className="container" onSubmit={handleFormSubmit}>
                 <div className="flex-row space-between my-2">
                     <label htmlFor="firstName">First Name:</label>
                     <input placeholder="First" name="firstName" type="firstName" id="firstName" onChange={handleChange} />
@@ -73,6 +73,10 @@ function Signup(props) {
                     <label htmlFor="pwd">Password:</label>
                     <input placeholder="******" name="password" type="password" id="pwd" onChange={handleChange} />
                 </div>
+                <p className="d-b">
+                    Please Note: Gamertag must be an existing Xbox live gamertag. To sign up for Xbox Live, visit <a href="https://www.xbox.com/en-US/live">Xbox Live</a>
+                </p>
+
                 <div className="flex-row flex-end">
                     <button type="submit">Submit</button>
                 </div>
