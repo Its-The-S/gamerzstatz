@@ -141,6 +141,14 @@ input:focus {
     box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5);
 }
 
+.ai-c {
+    align-items: center;
+}
+
+.c-primary {
+    color: #db1a20;
+}
+
 .carousel-link {
     padding-bottom: 1rem;
 }
@@ -151,6 +159,15 @@ input:focus {
     margin-left: auto;
     margin-right: auto;
 }
+
+.container-card {
+    align-content: center;
+    flex-grow: 1;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .container-center {
     text-align: center;
 }
@@ -176,12 +193,17 @@ input:focus {
     flex-wrap: wrap;
 }
 
-.space-between {
-    justify-content: space-between;
-}
-
 .flex-end {
     justify-content: flex-end;
+}
+
+.img-avatar {
+    height: 20rem;
+    border-radius: 50%;
+}
+
+.jc-c {
+    justify-content: center;
 }
 
 .mb-1 {
@@ -228,6 +250,10 @@ input:focus {
     padding-bottom: var(--spacing-two);
 }
 
+.space-between {
+    justify-content: space-between;
+}
+
 .ta-l {
     text-align: left;
 }
@@ -237,8 +263,13 @@ input:focus {
 }
 
 .card {
-    width: 25%;
     text-align: center;
+}
+
+.card-margin {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
 }
 
 .error-text {
