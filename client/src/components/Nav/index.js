@@ -1,21 +1,16 @@
 import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
-// import { useUser } from "../../utils/UserContext";
 
-// displays nav bar
+// navbar element
 function Nav() {
-    // const { currentUser, updateUser } = useUser();
-    // React.useEffect(() => {
-    //     updateUser();
-    // }, []);
-
     function showNavigation() {
         // displayed if user is logged in
         if (Auth.loggedIn()) {
             return (
                 <section className="top-nav">
                     <h1>
+                        {/* link to homepage */}
                         <Link to="/">
                             <span role="img" aria-label="controller ">
                                 🎮
@@ -28,11 +23,12 @@ function Nav() {
                         <div className="menu-button"></div>
                     </label>
                     <ul className="menu">
+                        {/* link to profile page */}
                         <li>
                             <a href="/profile">Profile</a>
                         </li>
+                        {/* link to log the user out */}
                         <li>
-                            {/* this is not using the Link component to logout or user and then refresh the application to the start */}
                             <a href="/" onClick={() => Auth.logout()}>
                                 Logout
                             </a>
@@ -57,9 +53,11 @@ function Nav() {
                         <div className="menu-button"></div>
                     </label>
                     <ul className="menu">
+                        {/* link to signup page */}
                         <li>
                             <Link to="/signup">Signup</Link>
                         </li>
+                        {/* link to login page */}
                         <li>
                             <Link to="/login">Login</Link>
                         </li>

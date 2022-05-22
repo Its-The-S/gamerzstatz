@@ -3,6 +3,7 @@ import React, { useState, useContext } from "react";
 export const UserContext = React.createContext();
 export const useUser = () => useContext(UserContext);
 
+// global state initial
 const UserProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState({
         name: "InitialName",
@@ -12,6 +13,7 @@ const UserProvider = ({ children }) => {
         password: "",
     });
 
+    // global state provider
     return <UserContext.Provider value={{ currentUser }}>{children}</UserContext.Provider>;
 };
 

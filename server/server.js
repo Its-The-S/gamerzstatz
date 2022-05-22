@@ -4,17 +4,21 @@ const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
 const { authMiddleware } = require("./utils/auth");
 
+// these determine how apollo/graphql will CRUD data
 const { typeDefs, resolvers } = require("./schemas");
+// connection info for mongoDB
 const db = require("./config/connection");
 
+// express
 const PORT = process.env.PORT || 3001;
 const app = express();
+// apollo
 const server = new ApolloServer({
     typeDefs,
     resolvers,
     context: authMiddleware,
 });
-
+// express
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(routes);
@@ -27,6 +31,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // comment out lines 30-36 to see apollo server, type npm run start to just see the server
+// these lines are required for Heroku to know how to route pages
 app.get("/*", function (req, res) {
     res.sendFile(path.join(__dirname, "../client/build/index.html"), function (err) {
         if (err) {
