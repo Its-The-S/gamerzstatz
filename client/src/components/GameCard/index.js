@@ -4,14 +4,13 @@ import { Link } from "react-router-dom";
 export default function GameCard(props) {
     const cardStyle = {
         width: "18rem",
-        border: "solid grey 5px",
-        padding: "20px",
-        margin: "30px",
+        border: "solid grey 0.33rem",
+        padding: "1.25rem",
     };
 
     return (
         <div className="container">
-            <div className="card" style={cardStyle}>
+            <div className="card card-margin" style={cardStyle}>
                 <h5 className="card-title">{props.title}</h5>
                 <img className="card-img-top" src={props.coverArt} alt="Card cap" />
                 <div className="card-body">
