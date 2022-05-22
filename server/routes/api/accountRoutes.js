@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const axios = require("axios");
 
-// get account info
+// get account info from xbox live using gamertag
 router.get("/:gamertag", async (req, res) => {
     const response = await axios({
         method: "get",

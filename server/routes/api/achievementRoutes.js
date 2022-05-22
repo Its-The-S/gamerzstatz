@@ -1,9 +1,8 @@
 const router = require("express").Router();
 const axios = require("axios");
 
-// get all achievement info
+// get all of a user's achievement info from xbox live using user's xbox unique id
 router.get("/:xuid", async (req, res) => {
-    // const user = JSON.parse(localStorage.getItem("user"));
     const response = await axios({
         method: "get",
         url: `https://xbl.io/api/v2/achievements/player/${req.params.xuid}`,

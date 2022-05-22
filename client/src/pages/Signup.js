@@ -5,12 +5,17 @@ import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
 const axios = require("axios");
 
+// signup page element
 function Signup(props) {
+    // state for holding form info
     const [formState, setFormState] = useState({ email: "", password: "", firstName: "", lastName: "", gamertag: "" });
+    // allows use of mutation to add new user
     const [addUser] = useMutation(ADD_USER);
 
+    // handles submission of signup form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        // run mutation
         const mutationResponse = await addUser({
             variables: {
                 email: formState.email,
@@ -21,7 +26,9 @@ function Signup(props) {
             },
         });
         const token = mutationResponse.data.addUser.token;
+        // fetch account data from xbox live using the submitted gamertag
         const fetchAccount = await axios.get(`/api/account/${mutationResponse.data.addUser.user.gamertag}`);
+        // create object for new user
         const newUser = {
             name: `${mutationResponse.data.addUser.user.firstName} ${mutationResponse.data.addUser.user.lastName}`,
             gamertag: mutationResponse.data.addUser.user.gamertag,
@@ -31,7 +38,7 @@ function Signup(props) {
             gamerscore: fetchAccount.data.profileUsers[0].settings[1].value,
         };
         localStorage.setItem("user", JSON.stringify(newUser));
-
+        // fetch overall achievement data from xbox live using the xbox live unique id fetched above
         const fetchAchieve = await axios.get(`/api/achieve/${newUser.xuid}`);
         localStorage.setItem("allAchievements", JSON.stringify(fetchAchieve.data));
 
@@ -39,6 +46,7 @@ function Signup(props) {
         Auth.login(token);
     };
 
+    // updates form state as user types
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormState({

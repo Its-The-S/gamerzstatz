@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const bcrypt = require("bcrypt");
 
-// do we need first and last name or is gamertag enough??
+// architecture for a user in the mongoDB
 const userSchema = new Schema({
     firstName: {
         type: String,
@@ -30,8 +30,6 @@ const userSchema = new Schema({
         required: true,
         minlength: 5,
     },
-    // games: [Game.schema],
-    // friends: [Friend.schema],
 });
 
 // set up pre-save middleware to create password
