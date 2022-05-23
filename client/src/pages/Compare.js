@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Chart from "../components/Chart";
+import Donut from "../components/Donut";
 const axios = require("axios");
 
 // compare page element
 export default function Compare() {
+
     // title is passed in url
     const { titleId } = useParams();
     // state for which friend is currently selected in the dropdown
@@ -66,6 +68,8 @@ export default function Compare() {
             </div>
             <div className="chart-container">
                 {/* display chart */}
+        <Donut titleId={titleId} />
+
                 <Chart titleId={titleId} />
             </div>
         </>

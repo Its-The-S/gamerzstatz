@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 // game card element
 export default function GameCard(props) {
+
     const cardStyle = {
         width: "18rem",
         border: "solid grey 0.33rem",
@@ -25,5 +26,7 @@ export default function GameCard(props) {
                 </div>
             </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }

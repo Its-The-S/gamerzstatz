@@ -61,86 +61,91 @@ export default function Chart(props) {
     let gameTitle = gameData.data?.achievements[0].titleAssociations[0].name || "Loading...";
 
     // column names
-    const labels = ["Achievements", "Progress", "Gamerscore"];
+    const labels = ["Gamerscore"];
 
-    const options = {
-        maintainAspectRatio: false,
-        scales: {
-            x: {
-                grid: {
-                    color: "white",
-                    lineWidth: 0.5,
-                },
-                ticks: {
-                    color: "white",
-                    font: {
-                        weight: "normal",
-                        size: "15rem",
-                    },
-                },
-            },
-            y: {
-                grid: {
-                    color: "white",
-                    lineWidth: 0.5,
-                },
-                ticks: {
-                    color: "white",
-                    font: {
-                        weight: "normal",
-                        size: "15rem",
-                    },
-                },
-            },
+  const options = {
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        grid: {
+          color: "white",
+          lineWidth: 0.5,
         },
-        layout: {
-            padding: {
-                right: 15,
-                left: 15,
-            },
+        ticks: {
+          color: "white",
+          font: {
+            weight: "normal",
+            size: "15rem",
+          },
         },
-        plugins: {
-            legend: {
-                position: "top",
-                labels: {
-                    color: "white",
-                    font: {
-                        weight: "normal",
-                        size: "15rem",
-                    },
-                },
-            },
-            title: {
-                display: true,
-                text: [`${profileData.gamertag} vs ${chosenFriendData}`, `${gameTitle}`],
-                color: "white",
-                font: {
-                    weight: "normal",
-                    size: "20rem",
-                },
-            },
+      },
+      y: {
+        grid: {
+          color: "white",
+          lineWidth: 0.5,
         },
-    };
+        ticks: {
+          color: "white",
+          font: {
+            weight: "normal",
+            size: "15rem",
+          },
+        },
+      },
+    },
+    layout: {
+      padding: {
+        right: 15,
+        left: 15,
+      },
+    },
+    plugins: {
+      legend: {
+        position: "top",
+        labels: {
+          color: "white",
+          font: {
+            weight: "normal",
+            size: "15rem",
+          },
+        },
+      },
+      title: {
+        display: true,
+        text: [`${profileData.gamertag} vs ${chosenFriendData}`, `${gameTitle}`],
+        color: "white",
+        font: {
+          weight: "normal",
+          size: "20rem",
+        },
+      },
+    },
+  };
 
-    const data = {
-        labels,
-        datasets: [
-            {
-                label: profileData.gamertag,
-                data: [achieveData?.currentAchievements, achieveData?.progressPercentage, achieveData?.currentGamerscore],
-                backgroundColor: "#aab1ae",
-            },
-            {
-                label: chosenFriendData,
-                data: [friendAchieveData?.currentAchievements, friendAchieveData?.progressPercentage, friendAchieveData?.currentGamerscore],
-                backgroundColor: "#DB1A20",
-            },
-        ],
-    };
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: profileData.gamertag,
+        data: [achieveData?.currentGamerscore],
+        backgroundColor: "#aab1ae",
+      },
+      {
+        label: chosenFriendData,
+        data: [friendAchieveData?.currentGamerscore],
+        // data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+        backgroundColor: "#DB1A20",
+      },
+    ],
+  };
 
-    return (
-        <>
-            <Bar options={options} data={data} />
-        </>
-    );
+  // if (achieveData.titles !== undefined && achieveData.titles.length > 0) {
+  return (
+    <>
+      <Bar options={options} data={data} />
+    </>
+  );
+  // }
+  return <></>;
+
 }
