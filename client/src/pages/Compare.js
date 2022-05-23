@@ -4,72 +4,74 @@ import Chart from "../components/Chart";
 import Donut from "../components/Donut";
 const axios = require("axios");
 
+// compare page element
 export default function Compare() {
-  const { titleId } = useParams();
-  const [friendListData, setFriendListData] = useState();
-  const [chosenFriendData, setChosenFriendData] = useState();
-  const [sortedFriendData, setSortedFriendData] = useState(["Loading Gamertags..."]);
 
-  useEffect(() => {
-    localStorage.setItem("chosenFriend", JSON.stringify(document.querySelector("#friendSelect").value));
-    const chosenFriend = JSON.parse(localStorage.getItem("chosenFriend"));
-    setChosenFriendData(chosenFriend);
-  });
+    // title is passed in url
+    const { titleId } = useParams();
+    // state for which friend is currently selected in the dropdown
+    const [chosenFriendData, setChosenFriendData] = useState();
+    // state for holding the logged in user's friends list
+    const [sortedFriendData, setSortedFriendData] = useState(["Loading Gamertags..."]);
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
+    // always listening useEffect
+    useEffect(() => {
+        // refreshes selected friend whenever a new choice is made in the dropdown
+        localStorage.setItem("chosenFriend", JSON.stringify(document.querySelector("#friendSelect").value));
+        const chosenFriend = JSON.parse(localStorage.getItem("chosenFriend"));
+        setChosenFriendData(chosenFriend);
+    });
 
-    const fetchFriends = async () => {
-      const friends = await axios.get(`/api/friend/${user.xuid}`);
-      // setFriendData(friends);
-      localStorage.setItem("friendsList", JSON.stringify(friends.data.people));
-      // setFriendListData(friends.data.people);
-      // const friendsArray = JSON.parse(localStorage.getItem("friendsList"));
-      const friendTags = [];
-      if (friends) {
-        friends?.data?.people?.map((friend) => {
-          friendTags.push(friend.gamertag);
-        });
-        // FIGURE OUT SORT WITHOUT CHANGING STATE
-        const sortedFriends = friendTags.sort();
-        setSortedFriendData(sortedFriends);
-      }
-      return friends;
-    };
-    fetchFriends();
-  }, []);
+    // only runs on load useEffect
+    useEffect(() => {
+        // grabs user from localstorage
+        const user = JSON.parse(localStorage.getItem("user"));
 
-  // const friendsArray = JSON.parse(localStorage.getItem("friendsList"));
-  // const friendTags = [];
-  // friendsArray.map((friend) => {
-  //     friendTags.push(friend.gamertag);
-  // });
-  // const sortedFriends = friendTags.sort();
+        // fetches friends list from xbox live, sorts, and sets state
+        const fetchFriends = async () => {
+            const friends = await axios.get(`/api/friend/${user.xuid}`);
+            localStorage.setItem("friendsList", JSON.stringify(friends.data.people));
+            const friendTags = [];
+            if (friends) {
+                friends?.data?.people?.map((friend) => {
+                    friendTags.push(friend.gamertag);
+                });
+                const sortedFriends = friendTags.sort();
+                setSortedFriendData(sortedFriends);
+            }
+            return friends;
+        };
+        fetchFriends();
+    }, []);
 
-  function handleChange() {
-    localStorage.setItem("chosenFriend", JSON.stringify(document.querySelector("#friendSelect").value));
-    window.location.reload(false);
-  }
+    // handles new choice from dropdown friends list, reloads the chart so new friends data is shown
+    function handleChange() {
+        localStorage.setItem("chosenFriend", JSON.stringify(document.querySelector("#friendSelect").value));
+        window.location.reload(false);
+    }
 
-  return (
-    <>
-      <div>
-        <span>Compare to: </span>
-        <select id="friendSelect" onChange={handleChange}>
-          {sortedFriendData &&
-            sortedFriendData.map((friend) => {
-              return (
-                <option key={friend} value={friend}>
-                  {friend}
-                </option>
-              );
-            })}
-        </select>
-      </div>
-      <div className="chart-container">
+    return (
+        <>
+            <div>
+                <span>Compare to: </span>
+                {/* drop down with friends list */}
+                <select id="friendSelect" onChange={handleChange}>
+                    {sortedFriendData &&
+                        sortedFriendData.map((friend) => {
+                            return (
+                                <option key={friend} value={friend}>
+                                    {friend}
+                                </option>
+                            );
+                        })}
+                </select>
+            </div>
+            <div className="chart-container">
+                {/* display chart */}
         <Donut titleId={titleId} />
-        <Chart titleId={titleId} />
-      </div>
-    </>
-  );
+
+                <Chart titleId={titleId} />
+            </div>
+        </>
+    );
 }

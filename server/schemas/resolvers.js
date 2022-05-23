@@ -29,19 +29,20 @@ const resolvers = {
 
             throw new AuthenticationError("Not logged in");
         },
+        // handles user login
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
-
+            // checks if database contains input email
             if (!user) {
                 throw new AuthenticationError("Incorrect credentials");
             }
-
+            // checks if password matches input email's password
             const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw) {
                 throw new AuthenticationError("Incorrect credentials");
             }
-
+            // assigns auth token
             const token = signToken(user);
 
             return { token, user };

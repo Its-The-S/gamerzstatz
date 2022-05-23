@@ -5,12 +5,17 @@ import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
 const axios = require("axios");
 
+// signup page element
 function Signup(props) {
+    // state for holding form info
     const [formState, setFormState] = useState({ email: "", password: "", firstName: "", lastName: "", gamertag: "" });
+    // allows use of mutation to add new user
     const [addUser] = useMutation(ADD_USER);
 
+    // handles submission of signup form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        // run mutation
         const mutationResponse = await addUser({
             variables: {
                 email: formState.email,
@@ -21,7 +26,9 @@ function Signup(props) {
             },
         });
         const token = mutationResponse.data.addUser.token;
+        // fetch account data from xbox live using the submitted gamertag
         const fetchAccount = await axios.get(`/api/account/${mutationResponse.data.addUser.user.gamertag}`);
+        // create object for new user
         const newUser = {
             name: `${mutationResponse.data.addUser.user.firstName} ${mutationResponse.data.addUser.user.lastName}`,
             gamertag: mutationResponse.data.addUser.user.gamertag,
@@ -31,7 +38,7 @@ function Signup(props) {
             gamerscore: fetchAccount.data.profileUsers[0].settings[1].value,
         };
         localStorage.setItem("user", JSON.stringify(newUser));
-
+        // fetch overall achievement data from xbox live using the xbox live unique id fetched above
         const fetchAchieve = await axios.get(`/api/achieve/${newUser.xuid}`);
         localStorage.setItem("allAchievements", JSON.stringify(fetchAchieve.data));
 
@@ -39,6 +46,7 @@ function Signup(props) {
         Auth.login(token);
     };
 
+    // updates form state as user types
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormState({
@@ -48,11 +56,11 @@ function Signup(props) {
     };
 
     return (
-        <div className="container my-1">
+        <div className="container container-center my-1">
             <Link to="/login">← Go to Login</Link>
 
             <h2>Signup</h2>
-            <form onSubmit={handleFormSubmit}>
+            <form className="container" onSubmit={handleFormSubmit}>
                 <div className="flex-row space-between my-2">
                     <label htmlFor="firstName">First Name:</label>
                     <input placeholder="First" name="firstName" type="firstName" id="firstName" onChange={handleChange} />
@@ -73,6 +81,10 @@ function Signup(props) {
                     <label htmlFor="pwd">Password:</label>
                     <input placeholder="******" name="password" type="password" id="pwd" onChange={handleChange} />
                 </div>
+                <p className="d-b">
+                    Please Note: Gamertag must be an existing Xbox live gamertag. To sign up for Xbox Live, visit <a href="https://www.xbox.com/en-US/live">Xbox Live</a>
+                </p>
+
                 <div className="flex-row flex-end">
                     <button type="submit">Submit</button>
                 </div>

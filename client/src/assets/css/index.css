@@ -141,11 +141,35 @@ input:focus {
   box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5);
 }
 
+.ai-c {
+    align-items: center;
+}
+
+.c-primary {
+    color: #db1a20;
+}
+
+.carousel-link {
+    padding-bottom: 1rem;
+}
+
 .container {
   flex-grow: 1;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.container-card {
+    align-content: center;
+    flex-grow: 1;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container-center {
+    text-align: center;
 }
 
 /* .card-container {
@@ -155,17 +179,40 @@ input:focus {
   margin-right: auto;
 } */
 
-.flex-row {
-  display: flex;
-  flex-wrap: wrap;
-}
+
 
 .space-between {
   justify-content: space-between;
+
+ .d-b {
+    display: block;
+}
+
+.d-f {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.flex-row {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .flex-end {
   justify-content: flex-end;
+}
+
+.img-avatar {
+    height: 20rem;
+    border-radius: 50%;
+}
+
+.jc-c {
+    justify-content: center;
+}
+
+.mb-1 {
+    margin-bottom: var(--spacing-one);
 }
 
 .mx-1 {
@@ -208,6 +255,18 @@ input:focus {
   padding-bottom: var(--spacing-two);
 }
 
+.space-between {
+    justify-content: space-between;
+}
+
+.ta-l {
+    text-align: left;
+}
+
+.ws-nw {
+    white-space: nowrap;
+}
+
 .card {
   width: 25%;
   text-align: center;
@@ -215,6 +274,12 @@ input:focus {
 
 .card-donut {
   width: 50%;
+}
+
+.card-margin {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
 }
 
 .error-text {

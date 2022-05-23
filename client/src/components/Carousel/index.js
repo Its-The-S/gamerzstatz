@@ -2,13 +2,13 @@ import React from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 //hard code images
-import dmc5 from "../../assets/dmc5se-square.jpeg";
-import Sims from "../../assets/sims.png";
+import dmc5 from "../../assets/dmc5.png";
 import Cod from "../../assets/cod.jpg";
 import Pvz from "../../assets/pvz.jpg";
 import Minecraft from "../../assets/Minecraft_cover.png";
 import Batman from "../../assets/Batman_Arkham_Knight_Cover_Art.jpg";
 
+// carousel element
 export const Carousel = () => {
     const imageStyle = {
         width: "18rem",
@@ -37,6 +37,7 @@ export const Carousel = () => {
                 aria-labelledby="basic-example-heading"
                 onMoved={(splide, newIndex) => {}}
             >
+                {/* we each picked a game to show */}
                 <SplideSlide>
                     <h4>
                         Aidan's Pick: <span>Devil May Cry 5 Special Edition</span>
@@ -48,7 +49,7 @@ export const Carousel = () => {
                             IGN
                         </a>
                     </p>
-                    <p>
+                    <p className="carousel-link">
                         See who is streaming it on{" "}
                         <a href="https://www.twitch.tv/search?term=devil%20may%20cry%205" target="_blank">
                             Twitch
@@ -66,7 +67,7 @@ export const Carousel = () => {
                             IGN
                         </a>
                     </p>
-                    <p>
+                    <p className="carousel-link">
                         See who is streaming it on{" "}
                         <a href="https://www.twitch.tv/directory/game/Call%20of%20Duty%3A%20Black%20Ops%204" target="_blank">
                             Twitch
@@ -84,7 +85,7 @@ export const Carousel = () => {
                             IGN
                         </a>
                     </p>
-                    <p>
+                    <p className="carousel-link">
                         See who is streaming it on{" "}
                         <a href="https://www.twitch.tv/directory/game/Plants%20vs.%20Zombies" target="_blank">
                             Twitch
@@ -102,7 +103,7 @@ export const Carousel = () => {
                             IGN
                         </a>
                     </p>
-                    <p>
+                    <p className="carousel-link">
                         See who is streaming it on{" "}
                         <a href="https://www.twitch.tv/directory/game/Minecraft" target="_blank">
                             Twitch
@@ -120,7 +121,7 @@ export const Carousel = () => {
                             IGN
                         </a>
                     </p>
-                    <p>
+                    <p className="carousel-link">
                         See who is streaming it on{" "}
                         <a href="https://www.twitch.tv/directory/game/Batman:%20Arkham%20Knight" target="_blank">
                             Twitch

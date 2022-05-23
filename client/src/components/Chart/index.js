@@ -2,72 +2,66 @@ import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import { Bar } from "react-chartjs-2";
 const axios = require("axios");
-// import { useUser } from "../../utils/UserContext";
 
+// chart element
 export default function Chart(props) {
-  // const { currentUser } = useUser();
-  ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+    ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-  const [profileData, setProfileData] = useState({});
-  const [achieveData, setAchieveData] = useState({});
-  const [friendAchieveData, setFriendAchieveData] = useState({});
-  const [gameData, setGameData] = useState({});
-  const [chosenFriendData, setChosenFriendData] = useState();
-  // const [friendData, setFriendData] = useState({});
+    // states
+    const [profileData, setProfileData] = useState({});
+    const [achieveData, setAchieveData] = useState({});
+    const [friendAchieveData, setFriendAchieveData] = useState({});
+    const [gameData, setGameData] = useState({});
+    const [chosenFriendData, setChosenFriendData] = useState();
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    setProfileData(user);
+    // runs only on load useEffect
+    useEffect(() => {
+        // set user's profile data
+        const user = JSON.parse(localStorage.getItem("user"));
+        setProfileData(user);
 
-    const allAchievements = JSON.parse(localStorage.getItem("allAchievements"));
-    const currentTitle = allAchievements.titles.filter((title) => {
-      return title.titleId === props.titleId;
-    });
-    console.log(currentTitle);
-    setAchieveData(currentTitle[0].achievement);
+        // sets the achievement data for the currently chosen game
+        const allAchievements = JSON.parse(localStorage.getItem("allAchievements"));
+        const currentTitle = allAchievements.titles.filter((title) => {
+            return title.titleId === props.titleId;
+        });
+        setAchieveData(currentTitle[0].achievement);
 
-    const chosenFriend = JSON.parse(localStorage.getItem("chosenFriend"));
-    setChosenFriendData(chosenFriend);
+        // sets which friend is currently selected from the dropdown
+        const chosenFriend = JSON.parse(localStorage.getItem("chosenFriend"));
+        setChosenFriendData(chosenFriend);
 
-    const fetchFriendAchievements = async () => {
-      const friendList = JSON.parse(localStorage.getItem("friendsList"));
-      const friendId = friendList.filter((friend) => {
-        return friend.gamertag === chosenFriend;
-      });
-      console.log("fList", friendId[0].xuid);
-      const fetchFriendAchieve = await axios.get(`/api/achieve/${friendId[0].xuid}`);
-      console.log("fetch", fetchFriendAchieve);
-      const currentFriendTitle = fetchFriendAchieve.data.titles.filter((title) => {
-        return title.titleId === props.titleId;
-      });
-      console.log("friend", currentFriendTitle);
-      setFriendAchieveData(currentFriendTitle[0]?.achievement);
-    };
-    fetchFriendAchievements();
+        // fetches chosen friends achievement data for the active game
+        const fetchFriendAchievements = async () => {
+            const friendList = JSON.parse(localStorage.getItem("friendsList"));
+            // pull chosen friend out of friends list
+            const friendId = friendList.filter((friend) => {
+                return friend.gamertag === chosenFriend;
+            });
+            // use chosen friend's xbox live unique id to fetch their achievement data
+            const fetchFriendAchieve = await axios.get(`/api/achieve/${friendId[0].xuid}`);
+            // filter the fetched achievement data to only return the data for the active game
+            const currentFriendTitle = fetchFriendAchieve.data.titles.filter((title) => {
+                return title.titleId === props.titleId;
+            });
+            setFriendAchieveData(currentFriendTitle[0]?.achievement);
+        };
+        fetchFriendAchievements();
 
-    const fetchGame = async () => {
-      const statFetch = await axios.get(`/api/game/${user.xuid}/${props.titleId}`);
-      setGameData(statFetch);
-      console.log(statFetch);
-      return statFetch;
-    };
-    fetchGame();
+        // fetches user's achievement data for active game
+        const fetchGame = async () => {
+            const statFetch = await axios.get(`/api/game/${user.xuid}/${props.titleId}`);
+            setGameData(statFetch);
+            return statFetch;
+        };
+        fetchGame();
+    }, []);
 
-    // const fetchFriends = async () => {
-    //     const friends = await axios.get(`/api/friend/${user.xuid}`);
-    //     console.log("friends", friends);
-    //     setFriendData(friends);
-    //     return friends;
-    // };
-    // fetchFriends();
+    // assigns loading when game title is not done being fetched
+    let gameTitle = gameData.data?.achievements[0].titleAssociations[0].name || "Loading...";
 
-    // const friends = JSON.parse(localStorage.getItem("friendsList"));
-    // setFriendData(friends);
-  }, []);
-
-  let gameTitle = gameData.data?.achievements[0].titleAssociations[0].name || "Loading...";
-
-  const labels = ["Gamerscore"];
+    // column names
+    const labels = ["Gamerscore"];
 
   const options = {
     maintainAspectRatio: false,
@@ -153,4 +147,5 @@ export default function Chart(props) {
   );
   // }
   return <></>;
+
 }

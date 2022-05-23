@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const axios = require("axios");
 
-// get all achievement info
+// get the achievement data for a specific user and specific game using the user's xbox unique id and the title's unique id
 router.get("/:xuid/:titleId", async (req, res) => {
     // const user = JSON.parse(localStorage.getItem("user"));
     const response = await axios({
