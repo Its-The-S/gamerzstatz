@@ -2,7 +2,7 @@
   margin-top: 1rem;
   padding: 1rem;
   border-top: 5px solid #db1a20;
-   /* background: linear-gradient(to right, #aab1ae, #db1a20); */
+  /* background: linear-gradient(to right, #aab1ae, #db1a20); */
   position: relative;
   bottom: 0;
   left: 0;
@@ -31,10 +31,10 @@
   display: none;
 }
 
-.footer-content h3{
+.footer-content h3 {
   line-height: 6%;
 }
-.footer-content{
+.footer-content {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,17 +42,16 @@
   text-align: center;
 }
 
-
-.socials{
+.socials {
   list-style: none;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 1rem 0 3rem 0;
-  text-align: center ;
+  text-align: center;
 }
 
-.socials li{
+.socials li {
   margin: 0 10px;
 }
 
@@ -60,7 +59,7 @@
   display: flex;
 }
 
-.socials a{
+.socials a {
   text-decoration: none;
   color: #fff;
   border: 1.1px solid white;
@@ -68,38 +67,36 @@
   border-radius: 50%;
 }
 
-.socials a i{
+.socials a i {
   font-size: 1.1rem;
   width: 20px;
-  transition: color .4s ease;
+  transition: color 0.4s ease;
 }
 
-.socials a:hover i{
-  color: #016FB9;
+.socials a:hover i {
+  color: #016fb9;
 }
-.footer-card{ 
+.footer-card {
   border-radius: 25px;
   padding: 8px;
 }
 
-
 @media (max-width: 700px) {
   .df {
-    flex-direction: column
-  };
+    flex-direction: column;
+  }
 }
 /* Check if the screen size is at least 600px */
 @media only screen and (min-width: 701px) {
   .lg {
-      display: block;
+    display: block;
   }
 }
-
 
 /* check if the screen size is at most 700px */
 @media only screen and (max-width: 700px) {
   .sm {
-      display: block;
-      visibility: visible;
+    display: block;
+    visibility: visible;
   }
 }

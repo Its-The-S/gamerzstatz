@@ -47,7 +47,7 @@ function App() {
               <Route path="/compare/:titleId" element={<Compare />} />
               <Route path="*" element={<NoMatch />} />
             </Routes>
-            <Footer />
+            {/* <Footer /> */}
           </>
         </Router>
       </UserProvider>
