@@ -142,15 +142,15 @@ input:focus {
 }
 
 .ai-c {
-    align-items: center;
+  align-items: center;
 }
 
 .c-primary {
-    color: #db1a20;
+  color: #db1a20;
 }
 
 .carousel-link {
-    padding-bottom: 1rem;
+  padding-bottom: 1rem;
 }
 
 .container {
@@ -161,15 +161,15 @@ input:focus {
 }
 
 .container-card {
-    align-content: center;
-    flex-grow: 1;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+  align-content: center;
+  flex-grow: 1;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .container-center {
-    text-align: center;
+  text-align: center;
 }
 
 /* .card-container {
@@ -179,23 +179,21 @@ input:focus {
   margin-right: auto;
 } */
 
-
-
 .space-between {
   justify-content: space-between;
-
- .d-b {
-    display: block;
+}
+.d-b {
+  display: block;
 }
 
 .d-f {
-    display: flex;
-    flex-wrap: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .flex-row {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .flex-end {
@@ -203,16 +201,16 @@ input:focus {
 }
 
 .img-avatar {
-    height: 20rem;
-    border-radius: 50%;
+  height: 20rem;
+  border-radius: 50%;
 }
 
 .jc-c {
-    justify-content: center;
+  justify-content: center;
 }
 
 .mb-1 {
-    margin-bottom: var(--spacing-one);
+  margin-bottom: var(--spacing-one);
 }
 
 .mx-1 {
@@ -256,15 +254,15 @@ input:focus {
 }
 
 .space-between {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 .ta-l {
-    text-align: left;
+  text-align: left;
 }
 
 .ws-nw {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 .card {
@@ -277,9 +275,9 @@ input:focus {
 }
 
 .card-margin {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
 }
 
 .error-text {
