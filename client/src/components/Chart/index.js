@@ -1,69 +1,132 @@
+import { ArcElement } from "chart.js";
 import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
-import { Bar } from "react-chartjs-2";
+import { Doughnut, Bar } from "react-chartjs-2";
 const axios = require("axios");
 
-// chart element
-export default function Chart(props) {
-  ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+export default function newChart(props) {
+  ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
-  // states
   const [profileData, setProfileData] = useState({});
   const [achieveData, setAchieveData] = useState({});
   const [friendAchieveData, setFriendAchieveData] = useState({});
   const [gameData, setGameData] = useState({});
   const [chosenFriendData, setChosenFriendData] = useState();
 
-  // runs only on load useEffect
   useEffect(() => {
-    // set user's profile data
     const user = JSON.parse(localStorage.getItem("user"));
     setProfileData(user);
 
-    // sets the achievement data for the currently chosen game
     const allAchievements = JSON.parse(localStorage.getItem("allAchievements"));
     const currentTitle = allAchievements.titles.filter((title) => {
       return title.titleId === props.titleId;
     });
+    console.log(currentTitle);
     setAchieveData(currentTitle[0].achievement);
 
-    // sets which friend is currently selected from the dropdown
     const chosenFriend = JSON.parse(localStorage.getItem("chosenFriend"));
     setChosenFriendData(chosenFriend);
 
-    // fetches chosen friends achievement data for the active game
     const fetchFriendAchievements = async () => {
       const friendList = JSON.parse(localStorage.getItem("friendsList"));
-      // pull chosen friend out of friends list
       const friendId = friendList.filter((friend) => {
         return friend.gamertag === chosenFriend;
       });
-      // use chosen friend's xbox live unique id to fetch their achievement data
+      console.log("fList", friendId[0].xuid);
       const fetchFriendAchieve = await axios.get(`/api/achieve/${friendId[0].xuid}`);
-      // filter the fetched achievement data to only return the data for the active game
+      console.log("fetch", fetchFriendAchieve);
       const currentFriendTitle = fetchFriendAchieve.data.titles.filter((title) => {
         return title.titleId === props.titleId;
       });
+      console.log("friend", currentFriendTitle);
       setFriendAchieveData(currentFriendTitle[0]?.achievement);
     };
     fetchFriendAchievements();
 
-    // fetches user's achievement data for active game
     const fetchGame = async () => {
       const statFetch = await axios.get(`/api/game/${user.xuid}/${props.titleId}`);
       setGameData(statFetch);
+      console.log(statFetch);
       return statFetch;
     };
     fetchGame();
   }, []);
 
-  // assigns loading when game title is not done being fetched
-  let gameTitle = gameData.data?.achievements[0].titleAssociations[0].name || "Loading...";
-
-  // column names
-  const labels = ["Gamerscore"];
+  const data = {
+    labels: [profileData.gamertag, chosenFriendData],
+    datasets: [
+      {
+        label: "Game Progress",
+        data: [achieveData?.currentGamerscore, friendAchieveData?.progressPercentage],
+        borderColor: "#333333",
+        backgroundColor: ["#aab1ae", "#DB1A20"],
+        pointBackgroundColor: "#333333",
+      },
+    ],
+  };
 
   const options = {
+    plugins: {
+      title: {
+        display: true,
+        text: "Game Progress",
+        color: "white",
+        font: {
+          weight: "normal",
+          size: "20rem",
+        },
+
+        padding: {
+          top: 30,
+          bottom: 10,
+        },
+        responsive: true,
+        animation: {
+          animateScale: true,
+        },
+      },
+    },
+  };
+
+  const data2 = {
+    labels: [profileData.gamertag, chosenFriendData],
+    datasets: [
+      {
+        label: "Game Achievements",
+        data: [achieveData?.currentAchievements, friendAchieveData?.currentAchievements],
+        borderColor: "#333333",
+        backgroundColor: ["#aab1ae", "#DB1A20"],
+        pointBackgroundColor: "#333333",
+      },
+    ],
+  };
+
+  const options2 = {
+    plugins: {
+      title: {
+        display: true,
+        text: "Game Achievements",
+        color: "white",
+        font: {
+          weight: "normal",
+          size: "20rem",
+        },
+
+        padding: {
+          top: 30,
+          bottom: 10,
+        },
+        responsive: true,
+        animation: {
+          animateScale: true,
+        },
+      },
+    },
+  };
+
+  const labels = ["Gamerscore"];
+
+  const options3 = {
     maintainAspectRatio: false,
     scales: {
       x: {
@@ -114,7 +177,7 @@ export default function Chart(props) {
     },
   };
 
-  const data = {
+  const data3 = {
     labels,
     datasets: [
       {
@@ -132,7 +195,15 @@ export default function Chart(props) {
 
   return (
     <>
-      <Bar options={options} data={data} />
+      <div className="flex-row">
+        <div className="card-donut">
+          <Doughnut options={options} data={data} />
+        </div>
+        <div className="card-donut">
+          <Doughnut options={options2} data={data2} />
+        </div>
+      </div>
+      <Bar options={options3} data={data3} />
     </>
   );
   return <></>;
