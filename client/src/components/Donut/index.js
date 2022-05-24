@@ -3,10 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, CategoryScale, Title, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 const axios = require("axios");
-// import { useUser } from "../../utils/UserContext";
 
 export default function newChart(props) {
-  // const { currentUser } = useUser();
   ChartJS.register(CategoryScale, Title, Tooltip, Legend, ArcElement);
 
   const [profileData, setProfileData] = useState({});
@@ -14,7 +12,6 @@ export default function newChart(props) {
   const [friendAchieveData, setFriendAchieveData] = useState({});
   const [gameData, setGameData] = useState({});
   const [chosenFriendData, setChosenFriendData] = useState();
-  // const [friendData, setFriendData] = useState({});
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -53,53 +50,8 @@ export default function newChart(props) {
       return statFetch;
     };
     fetchGame();
-
-    // const fetchFriends = async () => {
-    //     const friends = await axios.get(`/api/friend/${user.xuid}`);
-    //     console.log("friends", friends);
-    //     setFriendData(friends);
-    //     return friends;
-    // };
-    // fetchFriends();
-
-    // const friends = JSON.parse(localStorage.getItem("friendsList"));
-    // setFriendData(friends);
   }, []);
 
-  //   let gameTitle = gameData.data?.achievements[0].titleAssociations[0].name || "Loading...";
-
-  //   const labels = ["Achievements", "Progress", "Gamerscore"];
-
-  //   const options = {
-  //     maintainAspectRatio: false,
-  //     scales: {
-  //       x: {
-  //         grid: {
-  //           color: "white",
-  //           lineWidth: 0.5,
-  //         },
-  //         ticks: {
-  //           color: "white",
-  //           font: {
-  //             weight: "normal",
-  //             size: "15rem",
-  //           },
-  //         },
-  //       },
-  //       y: {
-  //         grid: {
-  //           color: "white",
-  //           lineWidth: 0.5,
-  //         },
-  //         ticks: {
-  //           color: "white",
-  //           font: {
-  //             weight: "normal",
-  //             size: "15rem",
-  //           },
-  //         },
-  //       },
-  //     },
   //     layout: {
   //       padding: {
   //         right: 15,
@@ -145,6 +97,7 @@ export default function newChart(props) {
   //       },
   //     ],
   //   };
+  let gameTitle = gameData.data?.achievements[0].titleAssociations[0].name || "Loading...";
 
   const data = {
     labels: [profileData.gamertag, chosenFriendData],
@@ -152,9 +105,9 @@ export default function newChart(props) {
       {
         label: "Game Progress",
         data: [achieveData?.currentGamerscore, friendAchieveData?.progressPercentage],
-        borderColor: "gray",
+        borderColor: "#333333",
         backgroundColor: ["#aab1ae", "#DB1A20"],
-        pointBackgroundColor: "gray",
+        pointBackgroundColor: "#333333",
       },
     ],
   };
@@ -172,7 +125,7 @@ export default function newChart(props) {
 
         padding: {
           top: 30,
-          bottom: 30,
+          bottom: 10,
         },
         responsive: true,
         animation: {
@@ -183,24 +136,14 @@ export default function newChart(props) {
   };
 
   const data2 = {
-    legend: {
-      position: "top",
-      labels: {
-        color: "white",
-        font: {
-          weight: "normal",
-          size: "15rem",
-        },
-      },
-    },
     labels: [profileData.gamertag, chosenFriendData],
     datasets: [
       {
         label: "Game Achievements",
         data: [achieveData?.currentAchievements, friendAchieveData?.currentAchievements],
-        borderColor: "gray",
+        borderColor: "#333333",
         backgroundColor: ["#aab1ae", "#DB1A20"],
-        pointBackgroundColor: "rgba(255,206,86,0.2)",
+        pointBackgroundColor: "#333333",
       },
     ],
   };
@@ -212,13 +155,15 @@ export default function newChart(props) {
         text: "Game Achievements",
         color: "white",
         font: {
-          size: 34,
+          weight: "normal",
+          size: "20rem",
         },
+
         padding: {
           top: 30,
-          bottom: 30,
+          bottom: 10,
         },
-        // responsive: true,
+        responsive: true,
         animation: {
           animateScale: true,
         },
