@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Chart from "../components/Chart";
-import Donut from "../components/Donut";
 const axios = require("axios");
 
 // compare page element
@@ -66,10 +65,8 @@ export default function Compare() {
         </select>
       </div>
       <div>
-        {/* display chart */}
-        <Donut titleId={titleId} />
-
         <div className="chart-container">
+          {/* display chart */}
           <Chart titleId={titleId} />
         </div>
       </div>
