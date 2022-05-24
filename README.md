@@ -11,7 +11,7 @@
 
 ## Description
 
-Th.
+Gamerz Statz is an app that allows a user to login/signup, view their Xbox Live Profile information, achievement data for games they play, and compare their achievement data for a specific game to that same data for one of the user's Xbox Live friends. When a new user signs up, they provide some personal info including their PRE-EXISTING Xbox Live gamertag which is used to fetch all of the user's relevant data. When an existing user logs in, they provide their email and password which is matched to the gamertag they provided on signup. On login or signup, the user is taken to their profile page which displays a card for all of the games for which they have obtained Xbox Live achievements. The user can click a link in one of these game cards to be taken to the compare page, which charts the user's data for that chosen game against the data of one of the user's Xbox Live frinds chosen from the dropdown.
 
 ## Installation
 
