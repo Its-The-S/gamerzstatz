@@ -72,8 +72,9 @@ export default function newChart(props) {
         text: "Game Progress",
         color: "white",
         font: {
+          family: "Shadows Into Light",
           weight: "normal",
-          size: "20rem",
+          size: "35rem",
         },
 
         padding: {
@@ -108,8 +109,9 @@ export default function newChart(props) {
         text: "Game Achievements",
         color: "white",
         font: {
+          family: "Shadows Into Light",
           weight: "normal",
-          size: "20rem",
+          size: "35rem",
         },
 
         padding: {
@@ -167,8 +169,9 @@ export default function newChart(props) {
         text: "Gamerscore",
         color: "white",
         font: {
+          family: "Shadows Into Light",
           weight: "normal",
-          size: "20rem",
+          size: "35rem",
         },
         padding: {
           top: 30,
