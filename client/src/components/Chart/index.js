@@ -62,41 +62,78 @@ export default function newChart(props) {
         ],
     };
 
-    const options = {
-        plugins: {
-            title: {
-                display: true,
-                text: "Game Progress",
-                color: "white",
-                font: {
-                    weight: "normal",
-                    size: "20rem",
-                },
+    const fetchGame = async () => {
+      const statFetch = await axios.get(`/api/game/${user.xuid}/${props.titleId}`);
+      setGameData(statFetch);
+      console.log(statFetch);
+      return statFetch;
+    };
+    fetchGame();
+  }, []);
 
-                padding: {
-                    top: 30,
-                    bottom: 10,
-                },
-                responsive: true,
-                animation: {
-                    animateScale: true,
-                },
-            },
+  const data = {
+    labels: [profileData.gamertag, chosenFriendData],
+    datasets: [
+      {
+        label: "Game Progress",
+        data: [achieveData?.currentGamerscore, friendAchieveData?.progressPercentage],
+        borderColor: "#333333",
+        backgroundColor: ["#aab1ae", "#DB1A20"],
+        pointBackgroundColor: "#333333",
+      },
+    ],
+  };
+
+  const options = {
+    plugins: {
+      title: {
+        display: true,
+        text: "Game Progress",
+        color: "white",
+        font: {
+          family: "Shadows Into Light",
+          weight: "normal",
+          size: "35rem",
+
         },
     };
 
-    const data2 = {
-        labels: [profileData.gamertag, chosenFriendData],
-        datasets: [
-            {
-                label: "Game Achievements",
-                data: [achieveData?.currentAchievements, friendAchieveData?.currentAchievements],
-                borderColor: "#333333",
-                backgroundColor: ["#aab1ae", "#DB1A20"],
-                pointBackgroundColor: "#333333",
-            },
-        ],
-    };
+        padding: {
+          top: 30,
+          bottom: 10,
+        },
+        responsive: true,
+        animation: {
+          animateScale: true,
+        },
+      },
+    },
+  };
+
+  const data2 = {
+    labels: [profileData.gamertag, chosenFriendData],
+    datasets: [
+      {
+        label: "Game Achievements",
+        data: [achieveData?.currentAchievements, friendAchieveData?.currentAchievements],
+        borderColor: "#333333",
+        backgroundColor: ["#aab1ae", "#DB1A20"],
+        pointBackgroundColor: "#333333",
+      },
+    ],
+  };
+
+  const options2 = {
+    plugins: {
+      title: {
+        display: true,
+        text: "Game Achievements",
+        color: "white",
+        font: {
+          family: "Shadows Into Light",
+          weight: "normal",
+          size: "35rem",
+        },
 
     const options2 = {
         plugins: {
@@ -149,11 +186,26 @@ export default function newChart(props) {
                 },
             },
         },
-        layout: {
-            padding: {
-                right: 15,
-                left: 15,
-            },
+      },
+    },
+    layout: {
+      padding: {
+        right: 15,
+        left: 15,
+      },
+    },
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Gamerscore",
+        color: "white",
+        font: {
+          family: "Shadows Into Light",
+          weight: "normal",
+          size: "35rem",
         },
         plugins: {
             legend: {
