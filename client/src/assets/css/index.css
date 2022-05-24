@@ -285,6 +285,19 @@ input:focus {
   color: var(--error);
 }
 
+.picture {
+    width: 75%;
+    height:50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.htext{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    font-size: 30px;
+}
 @media screen and (max-width: 768px) {
   .card {
     width: 100%;
@@ -293,3 +306,15 @@ input:focus {
     width: 100%;
   }
 }
+
+/* tablet */
+@media (max-width: 992px) {
+    .mqTab-img35 {
+      width: 35%;
+    }
+  }
+  /* phone */
+@media (max-width: 576px) {
+    .mqPh-dN {
+        display: none;
+      }}
