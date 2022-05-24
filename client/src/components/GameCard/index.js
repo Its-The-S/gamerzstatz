@@ -21,7 +21,7 @@ export default function GameCard(props) {
           </p>
           <p>Percent Complete: {props.percentAchieve}%</p>
           {/* link to compare page */}
-          <Link to={`/compare/${props.titleId}`}>Check My Stats</Link>
+          <Link to={`/compare/${props.titleId}`}>Compare My Stats</Link>
         </div>
       </div>
     </div>

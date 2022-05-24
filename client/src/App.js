@@ -16,51 +16,51 @@ import Footer from "./components/Footer/index";
 
 // create url for using graphql
 const httpLink = createHttpLink({
-    uri: "/graphql",
+  uri: "/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
-    const token = localStorage.getItem("id_token");
-    return {
-        headers: {
-            ...headers,
-            authorization: token ? `Bearer ${token}` : "",
-        },
-    };
+  const token = localStorage.getItem("id_token");
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
 });
 
 // settings for apollo provider
 const client = new ApolloClient({
-    link: authLink.concat(httpLink),
-    cache: new InMemoryCache(),
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
 });
 
 function App() {
-    return (
-        // apollo
-        <ApolloProvider client={client}>
-            {/* user context */}
-            <UserProvider>
-                {/* react router */}
-                <Router>
-                    {/* site */}
-                    <>
-                        <Nav />
-                        <Routes>
-                            {/* pages */}
-                            <Route path="/" element={<Home />} />
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/signup" element={<Signup />} />
-                            <Route path="/profile" element={<Profile />} />
-                            <Route path="/compare/:titleId" element={<Compare />} />
-                            <Route path="*" element={<NoMatch />} />
-                        </Routes>
-                        <Footer />
-                    </>
-                </Router>
-            </UserProvider>
-        </ApolloProvider>
-    );
+  return (
+    // apollo
+    <ApolloProvider client={client}>
+      {/* user context */}
+      <UserProvider>
+        {/* react router */}
+        <Router>
+          {/* site */}
+          <>
+            <Nav />
+            <Routes>
+              {/* pages */}
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/compare/:titleId" element={<Compare />} />
+              <Route path="*" element={<NoMatch />} />
+            </Routes>
+            <Footer />
+          </>
+        </Router>
+      </UserProvider>
+    </ApolloProvider>
+  );
 }
 
 export default App;
