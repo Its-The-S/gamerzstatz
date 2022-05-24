@@ -16,10 +16,6 @@
 html,
 #root,
 body {
-  height: 100%;
-}
-
-body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
@@ -286,17 +282,17 @@ input:focus {
 }
 
 .picture {
-    width: 75%;
-    height:50%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  width: 75%;
+  height: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.htext{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-align: center;
-    font-size: 30px;
+.htext {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-align: center;
+  font-size: 30px;
 }
 @media screen and (max-width: 768px) {
   .card {
@@ -309,12 +305,13 @@ input:focus {
 
 /* tablet */
 @media (max-width: 992px) {
-    .mqTab-img35 {
-      width: 35%;
-    }
+  .mqTab-img35 {
+    width: 35%;
   }
-  /* phone */
+}
+/* phone */
 @media (max-width: 576px) {
-    .mqPh-dN {
-        display: none;
-      }}
+  .mqPh-dN {
+    display: none;
+  }
+}
