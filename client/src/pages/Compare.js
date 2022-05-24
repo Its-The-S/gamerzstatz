@@ -65,10 +65,8 @@ export default function Compare() {
         </select>
       </div>
       <div>
-        <div className="chart-container">
-          {/* display chart */}
-          <Chart titleId={titleId} />
-        </div>
+        {/* display chart */}
+        <Chart titleId={titleId} />
       </div>
     </>
   );

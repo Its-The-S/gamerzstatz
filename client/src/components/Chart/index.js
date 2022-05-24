@@ -203,7 +203,9 @@ export default function newChart(props) {
           <Doughnut options={options2} data={data2} />
         </div>
       </div>
-      <Bar options={options3} data={data3} />
+      <div className="chart-container">
+        <Bar options={options3} data={data3} />
+      </div>
     </>
   );
   return <></>;
